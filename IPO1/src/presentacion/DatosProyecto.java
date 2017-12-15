@@ -44,6 +44,7 @@ public class DatosProyecto extends JPanel {
 		gbc_lblNombre.gridy = 0;
 		add(lblNombre, gbc_lblNombre);
 		
+		
 		txtNombre = new JTextField();
 		GridBagConstraints gbc_txtNombre = new GridBagConstraints();
 		gbc_txtNombre.gridwidth = 2;
@@ -100,6 +101,30 @@ public class DatosProyecto extends JPanel {
 		btnGuardar = new JButton("Guardar");
 		toolBar.add(btnGuardar);
 
+	}
+
+	public JTextField getTxtNombre() {
+		return txtNombre;
+	}
+
+	public void setTxtNombre(JTextField txtNombre) {
+		this.txtNombre = txtNombre;
+	}
+
+	public JTextField getTxtResponsable() {
+		return txtResponsable;
+	}
+
+	public void setTxtResponsable(JTextField txtResponsable) {
+		this.txtResponsable = txtResponsable;
+	}
+
+	public JTextArea getTextDescripcion() {
+		return textDescripcion;
+	}
+
+	public void setTextDescripcion(JTextArea textDescripcion) {
+		this.textDescripcion = textDescripcion;
 	}
 
 }
