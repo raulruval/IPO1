@@ -21,7 +21,11 @@ import dominio.Usuario;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.lang.reflect.Array;
+
 import javax.swing.ListSelectionModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PanelProyectos extends JPanel {
 	private JScrollPane scrollPane;
@@ -33,8 +37,10 @@ public class PanelProyectos extends JPanel {
 	private PanelInicio inicio;
 	private PanelDatosProyecto datpro;
 
-	ArrayList<Proyecto> proyectos = new ArrayList<Proyecto>();
+	ArrayList<Proyecto> proyectos = dominio.persistencia.inicializar();
+	ArrayList<Usuario> usuarios = dominio.persistencia.getusuarios();
 	private Proyecto pro;
+	MiModeloTabla modeloTabla = new MiModeloTabla();
 
 	public PanelProyectos() {
 		setBorder(new TitledBorder(null, "Proyectos:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -43,8 +49,6 @@ public class PanelProyectos extends JPanel {
 		scrollPane = new JScrollPane();
 		add(scrollPane, BorderLayout.CENTER);
 
-		MiModeloTabla modeloTabla = new MiModeloTabla();
-
 		table = new JTable();
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setModel(modeloTabla);
@@ -52,8 +56,8 @@ public class PanelProyectos extends JPanel {
 
 		// String[] fila1= { dominio.persistencia.pro1.getNombre() };
 		// modeloTabla.aniadeFila(fila1);
-		proyectos = dominio.persistencia.inicializar();
-
+		//proyectos = dominio.persistencia.inicializar();
+		//usuarios = dominio.persistencia.getusuarios();
 		for (int i = 0; i < proyectos.size(); i++) {
 			String[] fila1 = { proyectos.get(i).getNombre() };
 			modeloTabla.aniadeFila(fila1);
@@ -67,6 +71,7 @@ public class PanelProyectos extends JPanel {
 		add(toolBar, BorderLayout.SOUTH);
 
 		btnAadir = new JButton("Añadir");
+		btnAadir.addActionListener(new BtnAadirActionListener());
 		toolBar.add(btnAadir);
 
 		btnBorrar = new JButton("Borrar");
@@ -86,16 +91,44 @@ public class PanelProyectos extends JPanel {
 					datpro.getTxtResponsable().setText(nombre);
 					datpro.getTxtNombre().setText(pro.getNombre());
 					datpro.getTextDescripcion().setText(pro.getDescripcion());
-					PanelMiembros miembros = inicio.getVentanaMiembros();
-					for(int i=0; i<pro.getMiembros().size();i++){
-						
+					int numcolumnas=inicio.getVentanaMiembros().gettabla().getRowCount();
+					for(int i=0;i<numcolumnas;i++){
+						inicio.getVentanaMiembros().gettabla().eliminaFila(i);
 					}
+					inicio.getVentanaMiembros().aniadefila(pro);
 				}
 			}
 		});
 	}
-	public void setinicio(PanelInicio in){
-		inicio=in;
+
+	public void setinicio(PanelInicio in) {
+		inicio = in;
 	}
 
+	private class BtnAadirActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			inicio.getVentanaDatosProyecto().getTxtNombre().setText("");
+			inicio.getVentanaDatosProyecto().getTextDescripcion().setText("");
+			inicio.getVentanaDatosProyecto().getTxtResponsable().setText("");
+
+		}
+	}
+
+	public ArrayList<Proyecto> getproyectos() {
+		return proyectos;
+	}
+	public void aniadeproyecto(Proyecto proy){
+		proyectos.add(proy);
+	}
+
+	public MiModeloTabla getmodelotabla() {
+		return modeloTabla;
+	}
+	public ArrayList<Usuario> getusuarios(){
+		return usuarios;
+	}
+	public void aniadefila(String[] fila1){
+		MiModeloTabla mi= (MiModeloTabla) table.getModel();
+		mi.aniadeFila(fila1);
+	}
 }

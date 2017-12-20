@@ -2,6 +2,11 @@ package presentacion;
 
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
+
+import dominio.Proyecto;
+import dominio.Tarea;
+import dominio.Usuario;
+
 import javax.swing.UIManager;
 import java.awt.Color;
 import java.awt.GridBagLayout;
@@ -13,6 +18,10 @@ import javax.swing.JTextArea;
 import javax.swing.JToolBar;
 import javax.swing.JButton;
 import java.awt.ComponentOrientation;
+import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.awt.event.ActionEvent;
 
 public class PanelDatosProyecto extends JPanel {
 	private JLabel lblNombre;
@@ -23,19 +32,21 @@ public class PanelDatosProyecto extends JPanel {
 	private JTextArea textDescripcion;
 	private JToolBar toolBar;
 	private JButton btnGuardar;
+	private PanelInicio inicio;
 
 	/**
 	 * Create the panel.
 	 */
 	public PanelDatosProyecto() {
-		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos del proyecto:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos del proyecto:",
+				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{176, 233, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 187, 33, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[] { 176, 233, 0, 0 };
+		gridBagLayout.rowHeights = new int[] { 0, 187, 33, 0, 0 };
+		gridBagLayout.columnWeights = new double[] { 0.0, 1.0, 0.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
-		
+
 		lblNombre = new JLabel("Nombre:");
 		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
 		gbc_lblNombre.anchor = GridBagConstraints.EAST;
@@ -43,8 +54,7 @@ public class PanelDatosProyecto extends JPanel {
 		gbc_lblNombre.gridx = 0;
 		gbc_lblNombre.gridy = 0;
 		add(lblNombre, gbc_lblNombre);
-		
-		
+
 		txtNombre = new JTextField();
 		GridBagConstraints gbc_txtNombre = new GridBagConstraints();
 		gbc_txtNombre.gridwidth = 2;
@@ -54,7 +64,7 @@ public class PanelDatosProyecto extends JPanel {
 		gbc_txtNombre.gridy = 0;
 		add(txtNombre, gbc_txtNombre);
 		txtNombre.setColumns(10);
-		
+
 		lblDescripcin = new JLabel("Descripción:");
 		GridBagConstraints gbc_lblDescripcin = new GridBagConstraints();
 		gbc_lblDescripcin.anchor = GridBagConstraints.EAST;
@@ -62,7 +72,7 @@ public class PanelDatosProyecto extends JPanel {
 		gbc_lblDescripcin.gridx = 0;
 		gbc_lblDescripcin.gridy = 1;
 		add(lblDescripcin, gbc_lblDescripcin);
-		
+
 		textDescripcion = new JTextArea();
 		GridBagConstraints gbc_textDescripcion = new GridBagConstraints();
 		gbc_textDescripcion.gridwidth = 2;
@@ -71,7 +81,7 @@ public class PanelDatosProyecto extends JPanel {
 		gbc_textDescripcion.gridx = 1;
 		gbc_textDescripcion.gridy = 1;
 		add(textDescripcion, gbc_textDescripcion);
-		
+
 		lblResponsable = new JLabel("Responsable:");
 		GridBagConstraints gbc_lblResponsable = new GridBagConstraints();
 		gbc_lblResponsable.anchor = GridBagConstraints.EAST;
@@ -79,7 +89,7 @@ public class PanelDatosProyecto extends JPanel {
 		gbc_lblResponsable.gridx = 0;
 		gbc_lblResponsable.gridy = 2;
 		add(lblResponsable, gbc_lblResponsable);
-		
+
 		txtResponsable = new JTextField();
 		GridBagConstraints gbc_txtResponsable = new GridBagConstraints();
 		gbc_txtResponsable.gridwidth = 2;
@@ -89,7 +99,7 @@ public class PanelDatosProyecto extends JPanel {
 		gbc_txtResponsable.gridy = 2;
 		add(txtResponsable, gbc_txtResponsable);
 		txtResponsable.setColumns(10);
-		
+
 		toolBar = new JToolBar();
 		toolBar.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		GridBagConstraints gbc_toolBar = new GridBagConstraints();
@@ -97,10 +107,15 @@ public class PanelDatosProyecto extends JPanel {
 		gbc_toolBar.gridx = 2;
 		gbc_toolBar.gridy = 3;
 		add(toolBar, gbc_toolBar);
-		
+
 		btnGuardar = new JButton("Guardar");
+		btnGuardar.addActionListener(new BtnGuardarActionListener());
 		toolBar.add(btnGuardar);
 
+	}
+
+	public void setinicio(PanelInicio in) {
+		inicio = in;
 	}
 
 	public JTextField getTxtNombre() {
@@ -127,4 +142,29 @@ public class PanelDatosProyecto extends JPanel {
 		this.textDescripcion = textDescripcion;
 	}
 
+	private class BtnGuardarActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			String Nombre = getTxtNombre().getText();
+			String descripcion = getTextDescripcion().getText();
+			String Responsable = getTxtResponsable().getText();
+			//ArrayList<Usuario> us = inicio.getVentanaProyectos().getusuarios();
+			ArrayList<Tarea> tar = new ArrayList<Tarea>();
+			ArrayList<Usuario> miembros = new ArrayList<Usuario>();
+			Proyecto proyectoo;
+			Usuario usus;
+
+			/*if (us.equals(Responsable)) {
+				int num = us.indexOf(Responsable);
+				usus = us.get(num);
+			} else {
+				usus = new Usuario(Responsable, "", null, null, "", "", "");
+			}*/
+			usus = new Usuario(Responsable, "", null, null, "", "", "");
+			miembros.add(usus);
+			proyectoo = new Proyecto(Responsable, descripcion, miembros, tar, usus);
+			dominio.persistencia.aniadeproyecto(proyectoo);
+			String[] fila1 = { proyectoo.getNombre() };
+			inicio.getVentanaProyectos().aniadefila(fila1);;
+		}
+	}
 }

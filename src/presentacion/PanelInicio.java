@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -13,6 +14,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JDesktopPane;
 import javax.swing.border.TitledBorder;
 
+import dominio.Proyecto;
+import dominio.Usuario;
 
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -33,7 +36,19 @@ public class PanelInicio extends JFrame {
 	PanelDatosProyecto VentanaDatosProyecto = new PanelDatosProyecto();
 	PanelMiembros VentanaMiembros = new PanelMiembros();
 	PanelTareas VentanaTareas = new PanelTareas();
+	PanelProyectos VentanaProyectos = new PanelProyectos ();
 	private final JPanel panel = new JPanel();
+
+
+	public PanelProyectos getVentanaProyectos() {
+		return VentanaProyectos;
+	}
+
+
+	public void setVentanaProyectos(PanelProyectos ventanaProyectos) {
+		VentanaProyectos = ventanaProyectos;
+	}
+
 	private final JButton btnInicio = new JButton("Inicio");
 	private final JButton btnMensajes = new JButton("Mensajes");
 	private final JPanel panel_1 = new JPanel();
@@ -55,7 +70,6 @@ public class PanelInicio extends JFrame {
 
 	 
 	public PanelInicio() {
-		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); // Para que se abra a la dimensión de la pantalla
@@ -98,15 +112,15 @@ public class PanelInicio extends JFrame {
 		gbc_panel_1.gridx = 3;
 		gbc_panel_1.gridy = 0;
 		desktopPane.add(panel_1, gbc_panel_1);
+		comboBox.setPreferredSize(new Dimension(100, 35));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Español", "Ingles"}));
 		comboBox.setToolTipText("Idioma");
 		
 		panel_1.add(comboBox);
 		btnAyuda.setIcon(new ImageIcon(PanelInicio.class.getResource("/recursos/ayuda.png")));
-		btnAyuda.setPreferredSize(new Dimension(80,25));
+		btnAyuda.setPreferredSize(new Dimension(80, 35));
 		panel_1.add(btnAyuda);
 		
-		PanelProyectos VentanaProyectos = new PanelProyectos ();
 		GridBagConstraints gbc_VentanaProyectos = new GridBagConstraints();
 		gbc_VentanaProyectos.insets = new Insets(0, 0, 5, 5);
 		gbc_VentanaProyectos.gridx = 0;

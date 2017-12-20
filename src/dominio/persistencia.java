@@ -12,7 +12,7 @@ public class persistencia {
 	static ArrayList<Tarea> tareas3=new ArrayList<Tarea>();
 	
 	static ArrayList<Proyecto> proyectos = new ArrayList<Proyecto>();
-	
+	static ArrayList<Usuario> usuarios=new ArrayList<Usuario>();
 	
 	public static ArrayList<Proyecto> inicializar() {
 		Usuario us1 = new Usuario("Pepe Rodriguez Romero", "Profesor", null, tareas1, "38 años y soltero",
@@ -25,9 +25,13 @@ public class persistencia {
 				"Master en economicas", "Gran curriculum");
 		
 		usuarios1.add(us1);
+		usuarios.add(us1);
 		usuarios1.add(us2);
+		usuarios.add(us2);
 		usuarios1.add(us3);
+		usuarios.add(us3);
 		usuarios1.add(us4);
+		usuarios.add(us4);
 		
 		Usuario us5 = new Usuario("Pilar Salguero Hinarejos", "Administrativa", null, tareas1, "47 años",
 				"Estudio en Toledo", "Economia, matematicas, etc..");
@@ -39,9 +43,13 @@ public class persistencia {
 				"Publicidad y marketing", "Gran curriculum");
 		
 		usuarios2.add(us5);
+		usuarios.add(us5);
 		usuarios2.add(us6);
+		usuarios.add(us6);
 		usuarios2.add(us7);
+		usuarios.add(us7);
 		usuarios2.add(us8);
+		usuarios.add(us8);
 		
 		usuarios3.add(us1);
 		usuarios3.add(us4);
@@ -77,6 +85,12 @@ public class persistencia {
 		
 		
 		return proyectos;
+	}
+	public static ArrayList<Usuario> getusuarios(){
+		return usuarios;
+	}
+	public static void aniadeproyecto(Proyecto pro){
+		proyectos.add(pro);
 	}
 
 }
