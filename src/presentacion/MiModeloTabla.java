@@ -42,9 +42,18 @@ class MiModeloTabla extends AbstractTableModel {
 
 	public void eliminaFila(int row) {
 		datos.remove(row);
+		this.fireTableDataChanged();
 	}
 
 	public void aniadeFila(Object[] row) {
 		datos.add(row);
+	}
+	public void vaciartabla(){
+		if(datos.size()>0){
+			for(int i=0; i<datos.size();i++){
+				datos.removeElementAt(i);
+			}
+		}
+		
 	}
 }

@@ -72,7 +72,7 @@ public class persistencia {
 		tareas3.add(tar2);
 		
 		Proyecto pro1 = new Proyecto("Economía de la empresa",
-				"En este proyecto aprenderas a dirigir tu propia economía", usuarios1, tareas2, us2);
+				"En este proyecto aprenderas a dirigir tu propia economía", usuarios2, tareas2, us2);
 		Proyecto pro2 = new Proyecto("Biotecnología", "Importante en el apartado de desarrollo", usuarios3, tareas3, us4);
 		Proyecto pro3=new Proyecto("Física Cuántica", "Desarrollo y teoría", usuarios1, tareas2, us4);
 		Proyecto pro4=new Proyecto("Historia de Ciudad Real", "Desde 1800 hasta 2000", usuarios3, tareas1, us7);
@@ -81,9 +81,7 @@ public class persistencia {
 		proyectos.add(pro3);
 		proyectos.add(pro2);
 		proyectos.add(pro1);
-		
-		
-		
+
 		return proyectos;
 	}
 	public static ArrayList<Usuario> getusuarios(){

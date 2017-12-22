@@ -56,8 +56,8 @@ public class PanelProyectos extends JPanel {
 
 		// String[] fila1= { dominio.persistencia.pro1.getNombre() };
 		// modeloTabla.aniadeFila(fila1);
-		//proyectos = dominio.persistencia.inicializar();
-		//usuarios = dominio.persistencia.getusuarios();
+		// proyectos = dominio.persistencia.inicializar();
+		// usuarios = dominio.persistencia.getusuarios();
 		for (int i = 0; i < proyectos.size(); i++) {
 			String[] fila1 = { proyectos.get(i).getNombre() };
 			modeloTabla.aniadeFila(fila1);
@@ -75,6 +75,7 @@ public class PanelProyectos extends JPanel {
 		toolBar.add(btnAadir);
 
 		btnBorrar = new JButton("Borrar");
+		btnBorrar.addActionListener(new BtnBorrarActionListener());
 		btnBorrar.setHorizontalAlignment(SwingConstants.LEFT);
 		toolBar.add(btnBorrar);
 
@@ -91,11 +92,9 @@ public class PanelProyectos extends JPanel {
 					datpro.getTxtResponsable().setText(nombre);
 					datpro.getTxtNombre().setText(pro.getNombre());
 					datpro.getTextDescripcion().setText(pro.getDescripcion());
-					int numcolumnas=inicio.getVentanaMiembros().gettabla().getRowCount();
-					for(int i=0;i<numcolumnas;i++){
-						inicio.getVentanaMiembros().gettabla().eliminaFila(i);
-					}
+					inicio.getVentanaMiembros().gettabla().vaciartabla();
 					inicio.getVentanaMiembros().aniadefila(pro);
+					inicio.getVentanaMiembros().gettabla().fireTableDataChanged();
 				}
 			}
 		});
@@ -110,25 +109,46 @@ public class PanelProyectos extends JPanel {
 			inicio.getVentanaDatosProyecto().getTxtNombre().setText("");
 			inicio.getVentanaDatosProyecto().getTextDescripcion().setText("");
 			inicio.getVentanaDatosProyecto().getTxtResponsable().setText("");
+			inicio.getVentanaMiembros().gettabla().vaciartabla();
+		}
+	}
 
+	private class BtnBorrarActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			ListSelectionModel rowSM = table.getSelectionModel();
+			rowSM.addListSelectionListener(new ListSelectionListener() {
+				public void valueChanged(ListSelectionEvent e) {
+					ListSelectionModel lsm = (ListSelectionModel) e.getSource();
+					if (!lsm.isSelectionEmpty()) {
+						int filaSeleccionada = lsm.getMinSelectionIndex();
+						modeloTabla.eliminaFila(filaSeleccionada);
+						
+					}
+					
+				}
+			});
 		}
 	}
 
 	public ArrayList<Proyecto> getproyectos() {
 		return proyectos;
 	}
-	public void aniadeproyecto(Proyecto proy){
+
+	public void aniadeproyecto(Proyecto proy) {
 		proyectos.add(proy);
 	}
 
 	public MiModeloTabla getmodelotabla() {
 		return modeloTabla;
 	}
-	public ArrayList<Usuario> getusuarios(){
+
+	public ArrayList<Usuario> getusuarios() {
 		return usuarios;
 	}
-	public void aniadefila(String[] fila1){
-		MiModeloTabla mi= (MiModeloTabla) table.getModel();
-		mi.aniadeFila(fila1);
+
+	public void aniadefila(String[] fila1) {
+
+		modeloTabla.aniadeFila(fila1);
+		modeloTabla.fireTableDataChanged();
 	}
 }

@@ -147,24 +147,25 @@ public class PanelDatosProyecto extends JPanel {
 			String Nombre = getTxtNombre().getText();
 			String descripcion = getTextDescripcion().getText();
 			String Responsable = getTxtResponsable().getText();
-			//ArrayList<Usuario> us = inicio.getVentanaProyectos().getusuarios();
+			ArrayList<Usuario> us = dominio.persistencia.getusuarios();
 			ArrayList<Tarea> tar = new ArrayList<Tarea>();
 			ArrayList<Usuario> miembros = new ArrayList<Usuario>();
 			Proyecto proyectoo;
 			Usuario usus;
 
-			/*if (us.equals(Responsable)) {
+			if (us.equals(Responsable)) {
 				int num = us.indexOf(Responsable);
 				usus = us.get(num);
 			} else {
 				usus = new Usuario(Responsable, "", null, null, "", "", "");
-			}*/
+			}
 			usus = new Usuario(Responsable, "", null, null, "", "", "");
 			miembros.add(usus);
 			proyectoo = new Proyecto(Responsable, descripcion, miembros, tar, usus);
 			dominio.persistencia.aniadeproyecto(proyectoo);
 			String[] fila1 = { proyectoo.getNombre() };
-			inicio.getVentanaProyectos().aniadefila(fila1);;
+			inicio.getVentanaProyectos().aniadefila(fila1);
+			inicio.getVentanaProyectos().getmodelotabla().fireTableDataChanged();
 		}
 	}
 }
