@@ -4,7 +4,7 @@ import java.util.*;
 import javax.swing.table.*;
 
 class MimodelotablaTareas extends AbstractTableModel {
-	private String[] nombreColumnas = { "Nombre" + "Encargado" + "Fecha final" + "Etiquetas" + "Comentarios" };
+	private String[] nombreColumnas = { "Nombre     " +  " Encargado     " + " Fecha final     " + "Etiquetas     " + "Comentarios      " };
 	private Vector datos = new Vector();
 
 	public int getColumnCount() {

@@ -28,6 +28,10 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import java.awt.CardLayout;
+import javax.swing.JSplitPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PanelInicio extends JFrame {
 
@@ -37,7 +41,14 @@ public class PanelInicio extends JFrame {
 	PanelMiembros VentanaMiembros = new PanelMiembros();
 	PanelTareas VentanaTareas = new PanelTareas();
 	PanelProyectos VentanaProyectos = new PanelProyectos ();
-	private final JPanel panel = new JPanel();
+	PanelMensajes VentanaMensajes = new PanelMensajes();
+	PanelInformacionMensajes VentanaInformacionMensaje = new PanelInformacionMensajes();
+	PanelDatosUsuario VentanaDatosUsuario = new PanelDatosUsuario();
+
+
+	
+	private final JPanel panel_Inicio = new JPanel();
+	
 
 
 	public PanelProyectos getVentanaProyectos() {
@@ -51,9 +62,17 @@ public class PanelInicio extends JFrame {
 
 	private final JButton btnInicio = new JButton("Inicio");
 	private final JButton btnMensajes = new JButton("Mensajes");
-	private final JPanel panel_1 = new JPanel();
+	private final JPanel panel_Idioma = new JPanel();
 	private final JComboBox comboBox = new JComboBox();
 	private final JButton btnAyuda = new JButton("");
+	private final JPanel panel_DerechaArriba = new JPanel();
+	private final JPanel panel_DechaAbajo = new JPanel();
+	private final JPanel panel_Izquierda = new JPanel();
+	private final JPanel panel_Derecha = new JPanel();
+	private final JSplitPane splitPane_Der = new JSplitPane();
+	private final JPanel panel_IzqArriba = new JPanel();
+	private final JPanel panel_IzqAbajo = new JPanel();
+	private final JSplitPane splitPane_Izq = new JSplitPane();
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -84,83 +103,100 @@ public class PanelInicio extends JFrame {
 		desktopPane.setBorder(null);
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		GridBagLayout gbl_desktopPane = new GridBagLayout();
-		gbl_desktopPane.columnWidths = new int[]{275, 0, 814, 166, 0};
-		gbl_desktopPane.rowHeights = new int[]{47, 363, 22, 278, 0, 0};
-		gbl_desktopPane.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_desktopPane.rowWeights = new double[]{1.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_desktopPane.columnWidths = new int[]{336, 0, 0, 814, 166, 0};
+		gbl_desktopPane.rowHeights = new int[]{47, 363, 126, 278, 0, 0};
+		gbl_desktopPane.columnWeights = new double[]{1.0, 0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_desktopPane.rowWeights = new double[]{0.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		desktopPane.setLayout(gbl_desktopPane);
 		
-		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.gridwidth = 3;
-		gbc_panel.insets = new Insets(0, 0, 5, 5);
-		gbc_panel.fill = GridBagConstraints.BOTH;
-		gbc_panel.gridx = 0;
-		gbc_panel.gridy = 0;
-		desktopPane.add(panel, gbc_panel);
+		GridBagConstraints gbc_panel_Inicio = new GridBagConstraints();
+		gbc_panel_Inicio.gridwidth = 4;
+		gbc_panel_Inicio.insets = new Insets(0, 0, 5, 5);
+		gbc_panel_Inicio.fill = GridBagConstraints.BOTH;
+		gbc_panel_Inicio.gridx = 0;
+		gbc_panel_Inicio.gridy = 0;
+		desktopPane.add(panel_Inicio, gbc_panel_Inicio);
+		btnInicio.addMouseListener(new BtnInicioMouseListener());
 		btnInicio.setIcon(new ImageIcon(PanelInicio.class.getResource("/recursos/inicio.png")));
 		btnInicio.setPreferredSize(new Dimension(500, 35));
 		
-		panel.add(btnInicio);
+		panel_Inicio.add(btnInicio);
+		btnMensajes.addMouseListener(new BtnMensajesMouseListener());
 		btnMensajes.setIcon(new ImageIcon(PanelInicio.class.getResource("/recursos/correo1.jpg")));
 		btnMensajes.setPreferredSize(new Dimension(500, 35));
 		
-		panel.add(btnMensajes);
+		panel_Inicio.add(btnMensajes);
 		
-		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
-		gbc_panel_1.insets = new Insets(0, 0, 5, 0);
-		gbc_panel_1.fill = GridBagConstraints.BOTH;
-		gbc_panel_1.gridx = 3;
-		gbc_panel_1.gridy = 0;
-		desktopPane.add(panel_1, gbc_panel_1);
+		GridBagConstraints gbc_panel_Idioma = new GridBagConstraints();
+		gbc_panel_Idioma.insets = new Insets(0, 0, 5, 0);
+		gbc_panel_Idioma.fill = GridBagConstraints.BOTH;
+		gbc_panel_Idioma.gridx = 4;
+		gbc_panel_Idioma.gridy = 0;
+		desktopPane.add(panel_Idioma, gbc_panel_Idioma);
 		comboBox.setPreferredSize(new Dimension(100, 35));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Español", "Ingles"}));
 		comboBox.setToolTipText("Idioma");
 		
-		panel_1.add(comboBox);
+		panel_Idioma.add(comboBox);
 		btnAyuda.setIcon(new ImageIcon(PanelInicio.class.getResource("/recursos/ayuda.png")));
 		btnAyuda.setPreferredSize(new Dimension(80, 35));
-		panel_1.add(btnAyuda);
+		panel_Idioma.add(btnAyuda);
 		
-		GridBagConstraints gbc_VentanaProyectos = new GridBagConstraints();
-		gbc_VentanaProyectos.insets = new Insets(0, 0, 5, 5);
-		gbc_VentanaProyectos.gridx = 0;
-		gbc_VentanaProyectos.gridy = 1;
-		gbc_VentanaProyectos.fill = GridBagConstraints.BOTH;
-		desktopPane.add(VentanaProyectos, gbc_VentanaProyectos);
+		GridBagConstraints gbc_panel_Izquierda = new GridBagConstraints();
+		gbc_panel_Izquierda.gridheight = 3;
+		gbc_panel_Izquierda.insets = new Insets(0, 0, 5, 5);
+		gbc_panel_Izquierda.fill = GridBagConstraints.BOTH;
+		gbc_panel_Izquierda.gridx = 0;
+		gbc_panel_Izquierda.gridy = 1;
+		desktopPane.add(panel_Izquierda, gbc_panel_Izquierda);
+		panel_Izquierda.setLayout(new CardLayout(0, 0));
+		splitPane_Izq.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		
-		
-		VentanaDatosProyecto.setVisible(true);
-		GridBagConstraints gbc_VentanaDatosProyecto = new GridBagConstraints();
-		gbc_VentanaDatosProyecto.gridwidth = 2;
-		gbc_VentanaDatosProyecto.insets = new Insets(0, 0, 5, 0);
-		gbc_VentanaDatosProyecto.gridx = 2;
-		gbc_VentanaDatosProyecto.gridy = 1;
-		gbc_VentanaDatosProyecto.fill = GridBagConstraints.BOTH;
+		panel_Izquierda.add(splitPane_Izq, "splitPane_Izquerda");
+		splitPane_Izq.setRightComponent(panel_IzqAbajo);
+		panel_IzqAbajo.setLayout(new CardLayout(0, 0));
+		panel_IzqAbajo.add(VentanaMiembros, "VentanaMiembros");
+		splitPane_Izq.setLeftComponent(panel_IzqArriba);
+		panel_IzqArriba.setLayout(new CardLayout(0, 0));
+		panel_IzqArriba.add(VentanaProyectos, "VentanaProyectos");
 		VentanaProyectos.setinicio(this);
-		desktopPane.add(VentanaDatosProyecto, gbc_VentanaDatosProyecto);
 		
-
-		GridBagConstraints gbc_VentanaMiembros = new GridBagConstraints();
-		gbc_VentanaMiembros.fill = GridBagConstraints.BOTH;
-		gbc_VentanaMiembros.insets = new Insets(0, 0, 5, 5);
-		gbc_VentanaMiembros.gridx = 0;
-		gbc_VentanaMiembros.gridy = 3;
-		desktopPane.add(VentanaMiembros,gbc_VentanaMiembros);
+		GridBagConstraints gbc_panel_Derecha = new GridBagConstraints();
+		gbc_panel_Derecha.gridwidth = 3;
+		gbc_panel_Derecha.gridheight = 3;
+		gbc_panel_Derecha.insets = new Insets(0, 0, 5, 0);
+		gbc_panel_Derecha.fill = GridBagConstraints.BOTH;
+		gbc_panel_Derecha.gridx = 2;
+		gbc_panel_Derecha.gridy = 1;
+		desktopPane.add(panel_Derecha, gbc_panel_Derecha);
+		panel_Derecha.setLayout(new CardLayout(0, 0));
+		splitPane_Der.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		
-		GridBagConstraints gbc_VentanaTareas = new GridBagConstraints();
-		gbc_VentanaTareas.gridwidth = 2;
-		gbc_VentanaTareas.insets = new Insets(0, 0, 5, 0);
-		gbc_VentanaTareas.fill = GridBagConstraints.BOTH;
-		gbc_VentanaTareas.gridx = 2;
-		gbc_VentanaTareas.gridy = 3;
-		desktopPane.add(VentanaTareas,gbc_VentanaTareas);
+		panel_Derecha.add(splitPane_Der, "splitPane_Derecha");
+		splitPane_Der.setLeftComponent(panel_DerechaArriba);
+		panel_DerechaArriba.setLayout(new CardLayout(0, 0));
+		panel_DerechaArriba.add(VentanaDatosProyecto, "VentanaDatosProyecto");
+		splitPane_Der.setRightComponent(panel_DechaAbajo);
+		panel_DechaAbajo.setLayout(new CardLayout(0, 0));
+		panel_DechaAbajo.add(VentanaTareas, "VentanaTareas");
+		panel_Derecha.add(VentanaInformacionMensaje, "VentanaInformacionMensaje");
+		panel_Izquierda.add(VentanaMensajes,"VentanaMensajes");
+		
+		panel_DerechaArriba.add(VentanaDatosUsuario, "VentanaDatosUsuario");
+		
+		
+	
 		
 	}
 	public void setVentanas(){
+		
 		VentanaDatosProyecto.setVisible(true);
 		VentanaMiembros.setVisible(true);
 		VentanaTareas.setVisible(true);
-	}public PanelDatosProyecto getVentanaDatosProyecto() {
+		
+	}
+	
+	public PanelDatosProyecto getVentanaDatosProyecto() {
 		return VentanaDatosProyecto;
 	}
 
@@ -187,5 +223,27 @@ public class PanelInicio extends JFrame {
 
 	
 
+	
+
+	private class BtnMensajesMouseListener extends MouseAdapter {
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			splitPane_Der.setVisible(false);
+			splitPane_Izq.setVisible(false);
+			VentanaInformacionMensaje.setVisible(true);
+			VentanaMensajes.setVisible(true);			
+			
+		}
+	}
+	private class BtnInicioMouseListener extends MouseAdapter {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			VentanaInformacionMensaje.setVisible(false);
+			VentanaMensajes.setVisible(false);		
+			splitPane_Der.setVisible(true);
+			splitPane_Izq.setVisible(true);
+			
+		}
+	}
 }
 
