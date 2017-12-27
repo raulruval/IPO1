@@ -13,6 +13,8 @@ import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.TexturePaint;
+
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JToolBar;
@@ -33,6 +35,7 @@ public class PanelDatosProyecto extends JPanel {
 	private JToolBar toolBar;
 	private JButton btnGuardar;
 	private PanelInicio inicio;
+	private JButton btnModificar;
 
 	/**
 	 * Create the panel.
@@ -111,6 +114,13 @@ public class PanelDatosProyecto extends JPanel {
 		btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new BtnGuardarActionListener());
 		toolBar.add(btnGuardar);
+		
+		btnModificar = new JButton("Modificar");
+		btnModificar.addActionListener(new BtnModificarActionListener());
+		toolBar.add(btnModificar);
+		textDescripcion.setEnabled(false);
+		txtNombre.setEnabled(false);
+		txtResponsable.setEnabled(false);
 
 	}
 
@@ -166,6 +176,13 @@ public class PanelDatosProyecto extends JPanel {
 			String[] fila1 = { proyectoo.getNombre() };
 			inicio.getVentanaProyectos().aniadefila(fila1);
 			inicio.getVentanaProyectos().getmodelotabla().fireTableDataChanged();
+		}
+	}
+	private class BtnModificarActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			textDescripcion.setEnabled(true);
+			txtNombre.setEnabled(true);
+			txtResponsable.setEnabled(true);
 		}
 	}
 }

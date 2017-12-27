@@ -50,7 +50,7 @@ public class PanelMiembros extends JPanel {
 	}
 	public void aniadefila(Proyecto pro){
 		ArrayList<Usuario> miembrosproyecto= pro.getMiembros();
-		for(int i=0; i<pro.getMiembros().size();i++){
+		for(int i=0; i<(pro.getMiembros().size());i++){
 			String[] fila1 = {miembrosproyecto.get(i).getNombre()};
 			modeloTabla.aniadeFila(fila1);
 		}

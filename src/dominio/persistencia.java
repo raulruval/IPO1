@@ -15,15 +15,20 @@ public class persistencia {
 	static ArrayList<Usuario> usuarios=new ArrayList<Usuario>();
 	
 	static ArrayList<Mensaje> mensajes=new ArrayList<Mensaje>();
+	static Usuario us1;
+	static Usuario us2;
+	static Usuario us3;
+	static Usuario us4;
+	
 	
 	public static ArrayList<Proyecto> inicializar() {
-		Usuario us1 = new Usuario("Pepe Rodriguez Romero", "Profesor", null, tareas1, "38 años y soltero",
+		us1 = new Usuario("Pepe Rodriguez Romero", "Profesor", null, tareas1, "38 años y soltero",
 				"Estudio en michigan", "Economia, matematicas, etc..");
-		Usuario us2 = new Usuario("Raul Sanchez Romerijo", "Economico", null, tareas2, "27 años y recien titulado",
+		us2 = new Usuario("Raul Sanchez Romerijo", "Economico", null, tareas2, "27 años y recien titulado",
 				"Estudio en Ciudad Real", "Economia de pimes");
-		Usuario us3 = new Usuario("Inés Cepeda Ruiz", "Secretaria", null, tareas1, "39 años y experimentada",
+		us3 = new Usuario("Inés Cepeda Ruiz", "Secretaria", null, tareas1, "39 años y experimentada",
 				"Gran experiencia en el mundo de la empresa", "Economia, matematicas, etc..");
-		Usuario us4 = new Usuario("Raquel Marquez Salguero", "Gerente", null, tareas3, "29 años",
+		us4 = new Usuario("Raquel Marquez Salguero", "Gerente", null, tareas3, "29 años",
 				"Master en economicas", "Gran curriculum");
 		
 		usuarios1.add(us1);
@@ -84,15 +89,6 @@ public class persistencia {
 		proyectos.add(pro2);
 		proyectos.add(pro1);
 		
-		Mensaje men1=new Mensaje("Tutoria",us1, "Podriamos quedar mañana a las 17.00 para resolver una duda");
-		Mensaje men2=new Mensaje("Información", us4, "El próximo dia 17 tendrá lugar una reunión para tratar la economía");
-		Mensaje men3= new Mensaje("DAI ESI", us3, "Recordamos que ya están disponibles las camisetas");
-		Mensaje men4=new Mensaje("Spotify", us5, "Llevate tres meses gratis por estas navidades");
-		
-		mensajes.add(men1);
-		mensajes.add(men2);
-		mensajes.add(men3);
-		mensajes.add(men4);
 		
 		return proyectos;
 	}
@@ -103,6 +99,16 @@ public class persistencia {
 		proyectos.add(pro);
 	}
 	public static ArrayList<Mensaje> getmensajes(){
+		Mensaje men1=new Mensaje("Tutoria",us1, "Podriamos quedar mañana a las 17.00 para resolver una duda");
+		Mensaje men2=new Mensaje("Información", us4, "El próximo dia 17 tendrá lugar una reunión para tratar la economía");
+		Mensaje men3= new Mensaje("DAI ESI", us3, "Recordamos que ya están disponibles las camisetas");
+		Mensaje men4=new Mensaje("Spotify", us2, "Llevate tres meses gratis por estas navidades");
+		
+		mensajes.add(men1);
+		mensajes.add(men2);
+		mensajes.add(men3);
+		mensajes.add(men4);
+		
 		return mensajes;
 	}
 

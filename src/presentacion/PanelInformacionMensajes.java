@@ -12,6 +12,8 @@ import javax.swing.JToolBar;
 import java.awt.ComponentOrientation;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PanelInformacionMensajes extends JPanel {
 	private JLabel lblAsunto;
@@ -21,7 +23,8 @@ public class PanelInformacionMensajes extends JPanel {
 	private JTextArea textArea_Mensaje;
 	private JToolBar toolBar;
 	private JButton btnEnviar;
-
+	PanelInicio inicio;
+	private JButton btnModificar;
 	/**
 	 * Create the panel.
 	 */
@@ -88,7 +91,42 @@ public class PanelInformacionMensajes extends JPanel {
 		
 		btnEnviar = new JButton("Enviar");
 		toolBar.add(btnEnviar);
+		
+		btnModificar = new JButton("Modificar");
+		btnModificar.addActionListener(new BtnModificarActionListener());
+		toolBar.add(btnModificar);
+		textArea_Mensaje.setEnabled(false);
+		textField_Asunto.setEnabled(false);
+		textField_Remitente.setEnabled(false);
 
 	}
+	public void setinicio(PanelInicio in) {
+		inicio = in;
+	}
+	public JTextField getTextField_Asunto() {
+		return textField_Asunto;
+	}
+	public void setTextField_Asunto(JTextField textField_Asunto) {
+		this.textField_Asunto = textField_Asunto;
+	}
+	public JTextField getTextField_Remitente() {
+		return textField_Remitente;
+	}
+	public void setTextField_Remitente(JTextField textField_Remitente) {
+		this.textField_Remitente = textField_Remitente;
+	}
+	public JTextArea getTextArea_Mensaje() {
+		return textArea_Mensaje;
+	}
+	public void setTextArea_Mensaje(JTextArea textArea_Mensaje) {
+		this.textArea_Mensaje = textArea_Mensaje;
+	}
 
+	private class BtnModificarActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			textArea_Mensaje.setEnabled(true);
+			textField_Asunto.setEnabled(true);
+			textField_Remitente.setEnabled(true);
+		}
+	}
 }

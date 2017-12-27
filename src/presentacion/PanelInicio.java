@@ -121,6 +121,7 @@ public class PanelInicio extends JFrame {
 		btnInicio.setPreferredSize(new Dimension(500, 35));
 		
 		panel_Inicio.add(btnInicio);
+		
 		btnMensajes.addMouseListener(new BtnMensajesMouseListener());
 		btnMensajes.setIcon(new ImageIcon(PanelInicio.class.getResource("/recursos/correo1.jpg")));
 		btnMensajes.setPreferredSize(new Dimension(500, 35));
@@ -173,6 +174,8 @@ public class PanelInicio extends JFrame {
 		panel_Derecha.setLayout(new CardLayout(0, 0));
 		splitPane_Der.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		
+		VentanaInformacionMensaje.setinicio(this);
+		VentanaMensajes.setinicio(this);
 		panel_Derecha.add(splitPane_Der, "splitPane_Derecha");
 		splitPane_Der.setLeftComponent(panel_DerechaArriba);
 		panel_DerechaArriba.setLayout(new CardLayout(0, 0));
@@ -189,6 +192,26 @@ public class PanelInicio extends JFrame {
 	
 		
 	}
+	public PanelInformacionMensajes getVentanaInformacionMensaje() {
+		return VentanaInformacionMensaje;
+	}
+
+
+	public void setVentanaInformacionMensaje(PanelInformacionMensajes ventanaInformacionMensaje) {
+		VentanaInformacionMensaje = ventanaInformacionMensaje;
+	}
+
+
+	public PanelMensajes getVentanaMensajes() {
+		return VentanaMensajes;
+	}
+
+
+	public void setVentanaMensajes(PanelMensajes ventanaMensajes) {
+		VentanaMensajes = ventanaMensajes;
+	}
+
+
 	public void setVentanas(){
 		
 		VentanaDatosProyecto.setVisible(true);

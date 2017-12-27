@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.awt.ComponentOrientation;
 import javax.swing.table.DefaultTableModel;
 
+import presentacion.MiModeloTabla;
 import dominio.Mensaje;
 import dominio.Proyecto;
 import dominio.Usuario;
@@ -95,8 +96,12 @@ public class PanelProyectos extends JPanel {
 					datpro.getTxtNombre().setText(pro.getNombre());
 					datpro.getTextDescripcion().setText(pro.getDescripcion());
 					inicio.getVentanaMiembros().gettabla().vaciartabla();
+					inicio.getVentanaMiembros().gettabla().fireTableDataChanged();
 					inicio.getVentanaMiembros().aniadefila(pro);
 					inicio.getVentanaMiembros().gettabla().fireTableDataChanged();
+					inicio.getVentanaDatosProyecto().getTxtNombre().setEnabled(false);
+					inicio.getVentanaDatosProyecto().getTxtResponsable().setEnabled(false);
+					inicio.getVentanaDatosProyecto().getTextDescripcion().setEnabled(false);
 				}
 			}
 		});
@@ -117,19 +122,17 @@ public class PanelProyectos extends JPanel {
 
 	private class BtnBorrarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			ListSelectionModel rowSM = table.getSelectionModel();
-			rowSM.addListSelectionListener(new ListSelectionListener() {
-				public void valueChanged(ListSelectionEvent e) {
-					ListSelectionModel lsm = (ListSelectionModel) e.getSource();
-					if (!lsm.isSelectionEmpty()) {
-						int filaSeleccionada = lsm.getMinSelectionIndex();
-						modeloTabla.eliminaFila(filaSeleccionada);
-						
-					}
-					
-				}
-			});
+			MiModeloTabla modeloTabla = (MiModeloTabla) table.getModel();
+			int n= table.getSelectedRow();
+			if (n != -1) modeloTabla.eliminaFila(table.getSelectedRow());
+			modeloTabla.fireTableDataChanged();
+			inicio.getVentanaMiembros().gettabla().vaciartabla();
+			inicio.getVentanaMiembros().gettabla().fireTableDataChanged();
+			inicio.getVentanaDatosProyecto().getTxtNombre().setText("");
+			inicio.getVentanaDatosProyecto().getTextDescripcion().setText("");
+			inicio.getVentanaDatosProyecto().getTxtResponsable().setText("");
 		}
+		
 	}
 
 	public ArrayList<Proyecto> getproyectos() {
@@ -160,5 +163,8 @@ public class PanelProyectos extends JPanel {
 
 	public void setMensajes(ArrayList<Mensaje> mensajes) {
 		this.mensajes = mensajes;
+	}
+	public ArrayList<Mensaje> getmensajes(){
+		return mensajes;
 	}
 }
