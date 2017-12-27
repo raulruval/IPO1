@@ -103,9 +103,9 @@ public class PanelInicio extends JFrame {
 		desktopPane.setBorder(null);
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		GridBagLayout gbl_desktopPane = new GridBagLayout();
-		gbl_desktopPane.columnWidths = new int[]{336, 0, 0, 814, 166, 0};
+		gbl_desktopPane.columnWidths = new int[]{336, 0, 0, 670, 166, 0};
 		gbl_desktopPane.rowHeights = new int[]{47, 363, 126, 278, 0, 0};
-		gbl_desktopPane.columnWeights = new double[]{1.0, 0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_desktopPane.columnWeights = new double[]{1.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		gbl_desktopPane.rowWeights = new double[]{0.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		desktopPane.setLayout(gbl_desktopPane);
 		
@@ -158,6 +158,7 @@ public class PanelInicio extends JFrame {
 		panel_IzqAbajo.add(VentanaMiembros, "VentanaMiembros");
 		splitPane_Izq.setLeftComponent(panel_IzqArriba);
 		panel_IzqArriba.setLayout(new CardLayout(0, 0));
+		VentanaProyectos.setPreferredSize(new Dimension(464, 291));
 		panel_IzqArriba.add(VentanaProyectos, "VentanaProyectos");
 		VentanaProyectos.setinicio(this);
 		

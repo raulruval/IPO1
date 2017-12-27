@@ -14,6 +14,8 @@ public class persistencia {
 	static ArrayList<Proyecto> proyectos = new ArrayList<Proyecto>();
 	static ArrayList<Usuario> usuarios=new ArrayList<Usuario>();
 	
+	static ArrayList<Mensaje> mensajes=new ArrayList<Mensaje>();
+	
 	public static ArrayList<Proyecto> inicializar() {
 		Usuario us1 = new Usuario("Pepe Rodriguez Romero", "Profesor", null, tareas1, "38 años y soltero",
 				"Estudio en michigan", "Economia, matematicas, etc..");
@@ -81,7 +83,17 @@ public class persistencia {
 		proyectos.add(pro3);
 		proyectos.add(pro2);
 		proyectos.add(pro1);
-
+		
+		Mensaje men1=new Mensaje("Tutoria",us1, "Podriamos quedar mañana a las 17.00 para resolver una duda");
+		Mensaje men2=new Mensaje("Información", us4, "El próximo dia 17 tendrá lugar una reunión para tratar la economía");
+		Mensaje men3= new Mensaje("DAI ESI", us3, "Recordamos que ya están disponibles las camisetas");
+		Mensaje men4=new Mensaje("Spotify", us5, "Llevate tres meses gratis por estas navidades");
+		
+		mensajes.add(men1);
+		mensajes.add(men2);
+		mensajes.add(men3);
+		mensajes.add(men4);
+		
 		return proyectos;
 	}
 	public static ArrayList<Usuario> getusuarios(){
@@ -89,6 +101,9 @@ public class persistencia {
 	}
 	public static void aniadeproyecto(Proyecto pro){
 		proyectos.add(pro);
+	}
+	public static ArrayList<Mensaje> getmensajes(){
+		return mensajes;
 	}
 
 }

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.awt.ComponentOrientation;
 import javax.swing.table.DefaultTableModel;
 
+import dominio.Mensaje;
 import dominio.Proyecto;
 import dominio.Usuario;
 
@@ -39,6 +40,7 @@ public class PanelProyectos extends JPanel {
 
 	ArrayList<Proyecto> proyectos = dominio.persistencia.inicializar();
 	ArrayList<Usuario> usuarios = dominio.persistencia.getusuarios();
+	ArrayList<Mensaje> mensajes=dominio.persistencia.getmensajes();
 	private Proyecto pro;
 	MiModeloTabla modeloTabla = new MiModeloTabla();
 
@@ -150,5 +152,13 @@ public class PanelProyectos extends JPanel {
 
 		modeloTabla.aniadeFila(fila1);
 		modeloTabla.fireTableDataChanged();
+	}
+
+	public ArrayList<Mensaje> getMensajes() {
+		return mensajes;
+	}
+
+	public void setMensajes(ArrayList<Mensaje> mensajes) {
+		this.mensajes = mensajes;
 	}
 }
