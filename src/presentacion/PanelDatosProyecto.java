@@ -24,6 +24,8 @@ import java.awt.event.ActionListener;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+import java.awt.Dimension;
 
 public class PanelDatosProyecto extends JPanel {
 	private JLabel lblNombre;
@@ -112,10 +114,16 @@ public class PanelDatosProyecto extends JPanel {
 		add(toolBar, gbc_toolBar);
 
 		btnGuardar = new JButton("Guardar");
+		btnGuardar.setMinimumSize(new Dimension(100, 30));
+		btnGuardar.setMaximumSize(new Dimension(100, 35));
+		btnGuardar.setIcon(new ImageIcon(PanelDatosProyecto.class.getResource("/recursos/icons8-save-30.png")));
 		btnGuardar.addActionListener(new BtnGuardarActionListener());
 		toolBar.add(btnGuardar);
 		
 		btnModificar = new JButton("Modificar");
+		btnModificar.setMinimumSize(new Dimension(100, 30));
+		btnModificar.setMaximumSize(new Dimension(100, 35));
+		btnModificar.setIcon(new ImageIcon(PanelDatosProyecto.class.getResource("/recursos/icons8-edit-property-30.png")));
 		btnModificar.addActionListener(new BtnModificarActionListener());
 		toolBar.add(btnModificar);
 		textDescripcion.setEnabled(false);

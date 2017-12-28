@@ -1,26 +1,34 @@
 package presentacion;
 
 import java.util.*;
+
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.table.*;
 
 class MimodelotablaTareas extends AbstractTableModel {
-	private String[] nombreColumnas = { "Nombre     " +  " Encargado     " + " Fecha final     " + "Etiquetas     " + "Comentarios      " };
-	private Vector datos = new Vector();
+	
+	String[] columnNames = { "Nombre     ", " Encargado     ", " Fecha final     ", "Etiquetas     ",
+	"Comentarios      " };
+
+	Vector data = new Vector();
+
 
 	public int getColumnCount() {
-		return nombreColumnas.length;
+		return columnNames.length;
 	}
 
 	public int getRowCount() {
-		return datos.size();
+		return data.size();
 	}
 
 	public String getColumnName(int col) {
-		return nombreColumnas[col];
+		return columnNames[col];
 	}
 
 	public Object getValueAt(int row, int col) {
-		Object[] fila = (Object[]) datos.elementAt(row);
+		Object[] fila = (Object[]) data.elementAt(row);
 		return fila[col];
 	}
 
@@ -34,17 +42,26 @@ class MimodelotablaTareas extends AbstractTableModel {
 
 	public void setValueAt(Object value, int row, int col) {
 		if (row < getRowCount() && col < getColumnCount()) {
-			Object[] fila = (Object[]) datos.elementAt(row);
+			Object[] fila = (Object[]) data.elementAt(row);
 			fila[col] = value;
 			fireTableCellUpdated(row, col);
 		}
 	}
 
 	public void eliminaFila(int row) {
-		datos.remove(row);
+		data.remove(row);
+		this.fireTableDataChanged();
 	}
 
 	public void aniadeFila(Object[] row) {
-		datos.add(row);
+		data.add(row);
+	}
+	public void vaciartabla(){
+		if(data.size()>0){
+			for(int i=0; i<data.size();i++){
+				data.removeElementAt(i);
+			}
+		}
+		
 	}
 }

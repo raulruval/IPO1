@@ -13,6 +13,8 @@ import javax.swing.JToolBar;
 import javax.swing.JButton;
 import java.awt.ComponentOrientation;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import java.awt.Dimension;
 
 public class PanelMiembros extends JPanel {
 	private JScrollPane scrollPane;
@@ -42,9 +44,15 @@ public class PanelMiembros extends JPanel {
 		add(toolBar, BorderLayout.SOUTH);
 		
 		btnAñadir = new JButton("Añadir");
+		btnAñadir.setMinimumSize(new Dimension(100, 30));
+		btnAñadir.setMaximumSize(new Dimension(100, 35));
+		btnAñadir.setIcon(new ImageIcon(PanelMiembros.class.getResource("/recursos/icons8-add-property-30.png")));
 		toolBar.add(btnAñadir);
 		
 		btnBorrar = new JButton("Borrar");
+		btnBorrar.setMinimumSize(new Dimension(100, 30));
+		btnBorrar.setMaximumSize(new Dimension(100, 35));
+		btnBorrar.setIcon(new ImageIcon(PanelMiembros.class.getResource("/recursos/icons8-trash-can-30.png")));
 		toolBar.add(btnBorrar);
 
 	}

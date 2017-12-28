@@ -19,6 +19,8 @@ import java.awt.ComponentOrientation;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+import java.awt.Dimension;
 
 public class PanelMensajes extends JPanel {
 	private JScrollPane scrollPane;
@@ -56,10 +58,15 @@ public class PanelMensajes extends JPanel {
 		add(toolBar, BorderLayout.SOUTH);
 		
 		button = new JButton("Añadir");
+		button.setMinimumSize(new Dimension(100, 30));
+		button.setMaximumSize(new Dimension(100, 35));
+		button.setIcon(new ImageIcon(PanelMensajes.class.getResource("/recursos/icons8-new-message-30.png")));
 		button.addActionListener(new ButtonActionListener());
 		toolBar.add(button);
 		
 		button_1 = new JButton("Borrar");
+		button_1.setMaximumSize(new Dimension(100, 35));
+		button_1.setIcon(new ImageIcon(PanelMensajes.class.getResource("/recursos/icons8-trash-can-30.png")));
 		button_1.addActionListener(new Button_1ActionListener());
 		button_1.setHorizontalAlignment(SwingConstants.LEFT);
 		toolBar.add(button_1);

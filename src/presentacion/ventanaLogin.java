@@ -22,6 +22,12 @@ import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.FlowLayout;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 
 public class ventanaLogin {
 
@@ -45,6 +51,7 @@ public class ventanaLogin {
 				try {
 					ventanaLogin window = new ventanaLogin();
 					window.frmAplicacionDeCorreo.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -64,75 +71,102 @@ public class ventanaLogin {
 	 */
 	private void initialize() {
 		frmAplicacionDeCorreo = new JFrame();
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); // Para que se abra a la dimensión de la pantalla
+		frmAplicacionDeCorreo.setMinimumSize(new Dimension(screenSize.width/4, screenSize.height/3)); // Para que se abra en un tamaño adecuado
+		frmAplicacionDeCorreo.setResizable(false);
 		
 		frmAplicacionDeCorreo.setTitle("Gestión de proyectos");
 		frmAplicacionDeCorreo.setBounds(100, 100, 450, 317);
 		frmAplicacionDeCorreo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmAplicacionDeCorreo.getContentPane().setLayout(null);
+		frmAplicacionDeCorreo.setLocationRelativeTo(null); /// Para poner en el medio la ventana
 		{
 			panel = new JPanel();
-			panel.addMouseMotionListener(new PanelMouseMotionListener());
-			panel.setBounds(0, 0, 440, 231);
+			
+			frmAplicacionDeCorreo.getContentPane().setLayout(new BorderLayout(0, 0));
 			frmAplicacionDeCorreo.getContentPane().add(panel);
-			panel.setLayout(null);
+			GridBagLayout gbl_panel = new GridBagLayout();
+			gbl_panel.columnWidths = new int[]{49, 83, 265, 78, 0};
+			gbl_panel.rowHeights = new int[]{64, 20, 20, 39, 23, 0, 0};
+			gbl_panel.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+			gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+			panel.setLayout(gbl_panel);
 			{
-				lblUsuario = new JLabel("Usuario:");
-				lblUsuario.setHorizontalAlignment(SwingConstants.CENTER);
-				lblUsuario.setBounds(64, 67, 68, 14);
-				panel.add(lblUsuario);
-			}
-			{
+				{
+					lblUsuario = new JLabel("Usuario:");
+					lblUsuario.setHorizontalAlignment(SwingConstants.CENTER);
+					GridBagConstraints gbc_lblUsuario = new GridBagConstraints();
+					gbc_lblUsuario.fill = GridBagConstraints.HORIZONTAL;
+					gbc_lblUsuario.insets = new Insets(0, 0, 5, 5);
+					gbc_lblUsuario.gridx = 1;
+					gbc_lblUsuario.gridy = 1;
+					panel.add(lblUsuario, gbc_lblUsuario);
+				}
 				tfUsuario = new JTextField();
 				tfUsuario.addActionListener(new TfUsuarioActionListener());
-				tfUsuario.setBounds(142, 64, 210, 20);
-				panel.add(tfUsuario);
+				GridBagConstraints gbc_tfUsuario = new GridBagConstraints();
+				gbc_tfUsuario.fill = GridBagConstraints.BOTH;
+				gbc_tfUsuario.insets = new Insets(0, 0, 5, 5);
+				gbc_tfUsuario.gridx = 2;
+				gbc_tfUsuario.gridy = 1;
+				panel.add(tfUsuario, gbc_tfUsuario);
 				tfUsuario.setColumns(10);
-			}
-			{
-				lblContrasea = new JLabel("Contraseña:");
-				lblContrasea.setEnabled(false);
-				lblContrasea.setHorizontalAlignment(SwingConstants.CENTER);
-				lblContrasea.setBounds(49, 96, 80, 14);
-				panel.add(lblContrasea);
-			}
-			{
-				pwdPassword = new JPasswordField();
-				pwdPassword.addKeyListener(new PwdPasswordKeyListener());
-				pwdPassword.addActionListener(new PwdPasswordActionListener());
-				pwdPassword.setEnabled(false);
-				pwdPassword.setBounds(142, 93, 210, 20);
-				panel.add(pwdPassword);
-			}
-			{
-				lblAviso = new JLabel("");
-				lblAviso.setHorizontalAlignment(SwingConstants.CENTER);
-				lblAviso.setOpaque(true);
-				lblAviso.setBounds(142, 136, 257, 39);
-				panel.add(lblAviso);
-			}
-			{
-				btnEntrar = new JButton("Entrar");
-				btnEntrar.addActionListener(new BtnEntrarActionListener());
-				btnEntrar.setEnabled(false);
-				btnEntrar.setBounds(318, 197, 89, 23);
-				panel.add(btnEntrar);
+				{
+					lblContrasea = new JLabel("Contraseña:");
+					lblContrasea.setEnabled(false);
+					lblContrasea.setHorizontalAlignment(SwingConstants.CENTER);
+					GridBagConstraints gbc_lblContrasea = new GridBagConstraints();
+					gbc_lblContrasea.fill = GridBagConstraints.HORIZONTAL;
+					gbc_lblContrasea.insets = new Insets(0, 0, 5, 5);
+					gbc_lblContrasea.gridx = 1;
+					gbc_lblContrasea.gridy = 2;
+					panel.add(lblContrasea, gbc_lblContrasea);
+				}
+				{
+					pwdPassword = new JPasswordField();
+					pwdPassword.addKeyListener(new PwdPasswordKeyListener());
+					pwdPassword.addActionListener(new PwdPasswordActionListener());
+					pwdPassword.setEnabled(false);
+					GridBagConstraints gbc_pwdPassword = new GridBagConstraints();
+					gbc_pwdPassword.fill = GridBagConstraints.BOTH;
+					gbc_pwdPassword.insets = new Insets(0, 0, 5, 5);
+					gbc_pwdPassword.gridx = 2;
+					gbc_pwdPassword.gridy = 2;
+					panel.add(pwdPassword, gbc_pwdPassword);
+				}
+				{
+					lblAviso = new JLabel("");
+					lblAviso.setHorizontalAlignment(SwingConstants.CENTER);
+					lblAviso.setOpaque(true);
+					GridBagConstraints gbc_lblAviso = new GridBagConstraints();
+					gbc_lblAviso.fill = GridBagConstraints.BOTH;
+					gbc_lblAviso.insets = new Insets(0, 0, 5, 5);
+					gbc_lblAviso.gridx = 2;
+					gbc_lblAviso.gridy = 3;
+					panel.add(lblAviso, gbc_lblAviso);
+				}
+				{
+					btnEntrar = new JButton("Entrar");
+					btnEntrar.addActionListener(new BtnEntrarActionListener());
+					btnEntrar.setEnabled(false);
+					GridBagConstraints gbc_btnEntrar = new GridBagConstraints();
+					gbc_btnEntrar.insets = new Insets(0, 0, 5, 5);
+					gbc_btnEntrar.anchor = GridBagConstraints.EAST;
+					gbc_btnEntrar.fill = GridBagConstraints.VERTICAL;
+					gbc_btnEntrar.gridx = 2;
+					gbc_btnEntrar.gridy = 4;
+					panel.add(btnEntrar, gbc_btnEntrar);
+				}
 			}
 		}
 		{
-			lblEstado = new JLabel("Aqui se mostraran los distintos eventos capturados. ");
+			lblEstado = new JLabel("Bienvenido a la aplicación de gestión de proyectos ");
 			lblEstado.setOpaque(true);
 			lblEstado.setBackground(new Color(30, 144, 255));
 			lblEstado.setHorizontalAlignment(SwingConstants.CENTER);
-			lblEstado.setBounds(0, 231, 440, 47);
-			frmAplicacionDeCorreo.getContentPane().add(lblEstado);
+			frmAplicacionDeCorreo.getContentPane().add(lblEstado, BorderLayout.SOUTH);
 		}
 	}
-	private class PanelMouseMotionListener extends MouseMotionAdapter {
-		@Override
-		public void mouseMoved(MouseEvent e) {
-			lblEstado.setText("("+e.getX()+","+e.getY()+")");
-		}
-	}
+
 	private class TfUsuarioActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			lblContrasea.setEnabled(true);
@@ -142,7 +176,7 @@ public class ventanaLogin {
 	}
 	private class PwdPasswordActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			lblEstado.setText("Evento de Acción: ActionPerformed"+e.getActionCommand());
+			lblEstado.setText(e.getActionCommand());
 				//obtenemos la contraseña introducida
 				if (String.valueOf(pwdPassword.getPassword()).equals(password))
 				{

@@ -89,6 +89,8 @@ public class PanelInicio extends JFrame {
 
 	 
 	public PanelInicio() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(PanelInicio.class.getResource("/recursos/icons8-caballete-40.png")));
+		setTitle("Gestión de proyectos\r\n");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); // Para que se abra a la dimensión de la pantalla
@@ -115,15 +117,20 @@ public class PanelInicio extends JFrame {
 		gbc_panel_Inicio.fill = GridBagConstraints.BOTH;
 		gbc_panel_Inicio.gridx = 0;
 		gbc_panel_Inicio.gridy = 0;
+		panel_Inicio.setMinimumSize(new Dimension(100, 100));
 		desktopPane.add(panel_Inicio, gbc_panel_Inicio);
+		btnInicio.setIconTextGap(6);
 		btnInicio.addMouseListener(new BtnInicioMouseListener());
 		btnInicio.setIcon(new ImageIcon(PanelInicio.class.getResource("/recursos/inicio.png")));
 		btnInicio.setPreferredSize(new Dimension(500, 35));
 		
 		panel_Inicio.add(btnInicio);
+		btnMensajes.setIconTextGap(6);
+		btnMensajes.setMinimumSize(new Dimension(63, 25));
+		btnMensajes.setMaximumSize(new Dimension(63, 25));
 		
 		btnMensajes.addMouseListener(new BtnMensajesMouseListener());
-		btnMensajes.setIcon(new ImageIcon(PanelInicio.class.getResource("/recursos/correo1.jpg")));
+		btnMensajes.setIcon(new ImageIcon(PanelInicio.class.getResource("/recursos/icons8-secured-letter-30.png")));
 		btnMensajes.setPreferredSize(new Dimension(500, 35));
 		
 		panel_Inicio.add(btnMensajes);
@@ -154,9 +161,11 @@ public class PanelInicio extends JFrame {
 		splitPane_Izq.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		
 		panel_Izquierda.add(splitPane_Izq, "splitPane_Izquerda");
+		panel_IzqAbajo.setMinimumSize(new Dimension(10, 300));
 		splitPane_Izq.setRightComponent(panel_IzqAbajo);
 		panel_IzqAbajo.setLayout(new CardLayout(0, 0));
 		panel_IzqAbajo.add(VentanaMiembros, "VentanaMiembros");
+		panel_IzqArriba.setMinimumSize(new Dimension(10, 350));
 		splitPane_Izq.setLeftComponent(panel_IzqArriba);
 		panel_IzqArriba.setLayout(new CardLayout(0, 0));
 		VentanaProyectos.setPreferredSize(new Dimension(464, 291));
@@ -177,9 +186,11 @@ public class PanelInicio extends JFrame {
 		VentanaInformacionMensaje.setinicio(this);
 		VentanaMensajes.setinicio(this);
 		panel_Derecha.add(splitPane_Der, "splitPane_Derecha");
+		panel_DerechaArriba.setMinimumSize(new Dimension(10, 350));
 		splitPane_Der.setLeftComponent(panel_DerechaArriba);
 		panel_DerechaArriba.setLayout(new CardLayout(0, 0));
 		panel_DerechaArriba.add(VentanaDatosProyecto, "VentanaDatosProyecto");
+		panel_DechaAbajo.setMinimumSize(new Dimension(10, 300));
 		splitPane_Der.setRightComponent(panel_DechaAbajo);
 		panel_DechaAbajo.setLayout(new CardLayout(0, 0));
 		panel_DechaAbajo.add(VentanaTareas, "VentanaTareas");

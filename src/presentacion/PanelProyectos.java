@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 import presentacion.MiModeloTabla;
 import dominio.Mensaje;
 import dominio.Proyecto;
+import dominio.Tarea;
 import dominio.Usuario;
 
 import java.awt.event.MouseAdapter;
@@ -28,6 +29,8 @@ import java.lang.reflect.Array;
 import javax.swing.ListSelectionModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+import java.awt.Dimension;
 
 public class PanelProyectos extends JPanel {
 	private JScrollPane scrollPane;
@@ -42,6 +45,8 @@ public class PanelProyectos extends JPanel {
 	ArrayList<Proyecto> proyectos = dominio.persistencia.inicializar();
 	ArrayList<Usuario> usuarios = dominio.persistencia.getusuarios();
 	ArrayList<Mensaje> mensajes=dominio.persistencia.getmensajes();
+	ArrayList<Tarea> tareas=dominio.persistencia.getTareas();
+	
 	private Proyecto pro;
 	MiModeloTabla modeloTabla = new MiModeloTabla();
 
@@ -74,10 +79,16 @@ public class PanelProyectos extends JPanel {
 		add(toolBar, BorderLayout.SOUTH);
 
 		btnAadir = new JButton("Añadir");
+		btnAadir.setMinimumSize(new Dimension(100, 30));
+		btnAadir.setMaximumSize(new Dimension(100, 35));
+		btnAadir.setIcon(new ImageIcon(PanelProyectos.class.getResource("/recursos/icons8-add-property-30.png")));
 		btnAadir.addActionListener(new BtnAadirActionListener());
 		toolBar.add(btnAadir);
 
 		btnBorrar = new JButton("Borrar");
+		btnBorrar.setMinimumSize(new Dimension(100, 30));
+		btnBorrar.setMaximumSize(new Dimension(100, 35));
+		btnBorrar.setIcon(new ImageIcon(PanelProyectos.class.getResource("/recursos/icons8-trash-can-30.png")));
 		btnBorrar.addActionListener(new BtnBorrarActionListener());
 		btnBorrar.setHorizontalAlignment(SwingConstants.LEFT);
 		toolBar.add(btnBorrar);
@@ -102,6 +113,12 @@ public class PanelProyectos extends JPanel {
 					inicio.getVentanaDatosProyecto().getTxtNombre().setEnabled(false);
 					inicio.getVentanaDatosProyecto().getTxtResponsable().setEnabled(false);
 					inicio.getVentanaDatosProyecto().getTextDescripcion().setEnabled(false);
+					
+				/*/	//// Metido para tareas
+					inicio.getVentanaTareas().gettabla().vaciartabla();
+					inicio.getVentanaTareas().gettabla().fireTableDataChanged();
+					inicio.getVentanaTareas().aniadefila(pro);
+					inicio.getVentanaTareas().gettabla().fireTableDataChanged(); /*/
 				}
 			}
 		});

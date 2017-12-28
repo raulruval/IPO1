@@ -13,7 +13,7 @@ public class persistencia {
 	
 	static ArrayList<Proyecto> proyectos = new ArrayList<Proyecto>();
 	static ArrayList<Usuario> usuarios=new ArrayList<Usuario>();
-	
+	static ArrayList<Tarea> tareas=new ArrayList<Tarea>();
 	static ArrayList<Mensaje> mensajes=new ArrayList<Mensaje>();
 	static Usuario us1;
 	static Usuario us2;
@@ -92,6 +92,10 @@ public class persistencia {
 		
 		return proyectos;
 	}
+	public static ArrayList<Tarea> getTareas(){
+		return tareas;
+	}
+	
 	public static ArrayList<Usuario> getusuarios(){
 		return usuarios;
 	}

@@ -14,6 +14,8 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+import java.awt.Dimension;
 
 public class PanelInformacionMensajes extends JPanel {
 	private JLabel lblAsunto;
@@ -90,9 +92,15 @@ public class PanelInformacionMensajes extends JPanel {
 		add(toolBar, gbc_toolBar);
 		
 		btnEnviar = new JButton("Enviar");
+		btnEnviar.setMinimumSize(new Dimension(100, 30));
+		btnEnviar.setMaximumSize(new Dimension(100, 35));
+		btnEnviar.setIcon(new ImageIcon(PanelInformacionMensajes.class.getResource("/recursos/icons8-send-30.png")));
 		toolBar.add(btnEnviar);
 		
 		btnModificar = new JButton("Modificar");
+		btnModificar.setIcon(new ImageIcon(PanelInformacionMensajes.class.getResource("/recursos/icons8-edit-property-30.png")));
+		btnModificar.setMinimumSize(new Dimension(100, 30));
+		btnModificar.setMaximumSize(new Dimension(100, 35));
 		btnModificar.addActionListener(new BtnModificarActionListener());
 		toolBar.add(btnModificar);
 		textArea_Mensaje.setEnabled(false);
