@@ -47,6 +47,15 @@ public class PanelInicio extends JFrame {
 
 
 	
+	public PanelDatosUsuario getVentanaDatosUsuario() {
+		return VentanaDatosUsuario;
+	}
+
+
+	public void setVentanaDatosUsuario(PanelDatosUsuario ventanaDatosUsuario) {
+		VentanaDatosUsuario = ventanaDatosUsuario;
+	}
+
 	private final JPanel panel_Inicio = new JPanel();
 	
 
@@ -164,7 +173,9 @@ public class PanelInicio extends JFrame {
 		panel_IzqAbajo.setMinimumSize(new Dimension(10, 300));
 		splitPane_Izq.setRightComponent(panel_IzqAbajo);
 		panel_IzqAbajo.setLayout(new CardLayout(0, 0));
+		
 		panel_IzqAbajo.add(VentanaMiembros, "VentanaMiembros");
+		VentanaMiembros.setinicio(this);
 		panel_IzqArriba.setMinimumSize(new Dimension(10, 350));
 		splitPane_Izq.setLeftComponent(panel_IzqArriba);
 		panel_IzqArriba.setLayout(new CardLayout(0, 0));

@@ -13,6 +13,10 @@ import javax.swing.JTextArea;
 import javax.swing.JToolBar;
 import javax.swing.JButton;
 import java.awt.ComponentOrientation;
+import java.awt.Dimension;
+import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PanelDatosUsuario extends JPanel {
 	private JLabel lblNombre;
@@ -23,6 +27,7 @@ public class PanelDatosUsuario extends JPanel {
 	private JTextArea textDescripcion;
 	private JToolBar toolBar;
 	private JButton btnGuardar;
+	private JButton button;
 
 	/**
 	 * Create the panel.
@@ -99,7 +104,18 @@ public class PanelDatosUsuario extends JPanel {
 		add(toolBar, gbc_toolBar);
 		
 		btnGuardar = new JButton("Guardar");
+		btnGuardar.setIcon(new ImageIcon(PanelDatosUsuario.class.getResource("/recursos/icons8-save-30.png")));
 		toolBar.add(btnGuardar);
+		
+		button = new JButton("Modificar");
+		button.addActionListener(new ButtonActionListener());
+		button.setIcon(new ImageIcon(PanelDatosUsuario.class.getResource("/recursos/icons8-edit-property-30.png")));
+		button.setMinimumSize(new Dimension(100, 30));
+		button.setMaximumSize(new Dimension(100, 35));
+		toolBar.add(button);
+		txtResponsable.setEnabled(false);
+		txtNombre.setEnabled(false);
+		textDescripcion.setEnabled(false);
 
 	}
 
@@ -127,4 +143,11 @@ public class PanelDatosUsuario extends JPanel {
 		this.textDescripcion = textDescripcion;
 	}
 
+	private class ButtonActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			txtResponsable.setEnabled(true);
+			txtNombre.setEnabled(true);
+			textDescripcion.setEnabled(true);
+		}
+	}
 }

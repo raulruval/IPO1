@@ -110,6 +110,7 @@ public class PanelProyectos extends JPanel {
 					inicio.getVentanaMiembros().gettabla().fireTableDataChanged();
 					inicio.getVentanaMiembros().aniadefila(pro);
 					inicio.getVentanaMiembros().gettabla().fireTableDataChanged();
+					inicio.getVentanaDatosProyecto().setVisible(true);
 					inicio.getVentanaDatosProyecto().getTxtNombre().setEnabled(false);
 					inicio.getVentanaDatosProyecto().getTxtResponsable().setEnabled(false);
 					inicio.getVentanaDatosProyecto().getTextDescripcion().setEnabled(false);
@@ -126,6 +127,14 @@ public class PanelProyectos extends JPanel {
 
 	public void setinicio(PanelInicio in) {
 		inicio = in;
+	}
+
+	public JTable getTable() {
+		return table;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
 	}
 
 	private class BtnAadirActionListener implements ActionListener {
