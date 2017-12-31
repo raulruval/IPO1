@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -32,6 +33,10 @@ import java.awt.CardLayout;
 import javax.swing.JSplitPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PanelInicio extends JFrame {
 
@@ -155,6 +160,7 @@ public class PanelInicio extends JFrame {
 		comboBox.setToolTipText("Idioma");
 		
 		panel_Idioma.add(comboBox);
+		btnAyuda.addActionListener(new BtnAyudaActionListener());
 		btnAyuda.setIcon(new ImageIcon(PanelInicio.class.getResource("/recursos/ayuda.png")));
 		btnAyuda.setPreferredSize(new Dimension(80, 35));
 		panel_Idioma.add(btnAyuda);
@@ -291,5 +297,12 @@ public class PanelInicio extends JFrame {
 			
 		}
 	}
+	private class BtnAyudaActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+		
+			JOptionPane.showMessageDialog(null, "El proyecto ha sido realizado por:\nSergio Rodriguez Salguero y Raúl Ruiz del valle Álvarez.", "Información", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+	
 }
 

@@ -9,6 +9,7 @@ import javax.swing.JTable;
 import java.awt.BorderLayout;
 import javax.swing.JToolBar;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Component;
 import java.awt.Point;
@@ -143,20 +144,30 @@ public class PanelProyectos extends JPanel {
 			inicio.getVentanaDatosProyecto().getTextDescripcion().setText("");
 			inicio.getVentanaDatosProyecto().getTxtResponsable().setText("");
 			inicio.getVentanaMiembros().gettabla().vaciartabla();
+			JOptionPane.showMessageDialog(null, "Añada la información del proyecto en la ventana de datos del proyecto", "Información", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 
 	private class BtnBorrarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			MiModeloTabla modeloTabla = (MiModeloTabla) table.getModel();
-			int n= table.getSelectedRow();
-			if (n != -1) modeloTabla.eliminaFila(table.getSelectedRow());
-			modeloTabla.fireTableDataChanged();
-			inicio.getVentanaMiembros().gettabla().vaciartabla();
-			inicio.getVentanaMiembros().gettabla().fireTableDataChanged();
-			inicio.getVentanaDatosProyecto().getTxtNombre().setText("");
-			inicio.getVentanaDatosProyecto().getTextDescripcion().setText("");
-			inicio.getVentanaDatosProyecto().getTxtResponsable().setText("");
+			// Ventana de dialogo
+			
+			int p = JOptionPane.showOptionDialog(null, "¿Seguro que desea eliminar este proyecto?",
+					"Eliminación de proyecto", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null,
+					null);
+			if (p == 0) {
+				MiModeloTabla modeloTabla = (MiModeloTabla) table.getModel();
+				int n = table.getSelectedRow();
+				if (n != -1)
+					modeloTabla.eliminaFila(table.getSelectedRow());
+				modeloTabla.fireTableDataChanged();
+				inicio.getVentanaMiembros().gettabla().vaciartabla();
+				inicio.getVentanaMiembros().gettabla().fireTableDataChanged();
+				inicio.getVentanaDatosProyecto().getTxtNombre().setText("");
+				inicio.getVentanaDatosProyecto().getTextDescripcion().setText("");
+				inicio.getVentanaDatosProyecto().getTxtResponsable().setText("");
+			}
+
 		}
 		
 	}

@@ -7,6 +7,7 @@ import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.JTable;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -95,20 +96,31 @@ public class PanelMensajes extends JPanel {
 
 	private class ButtonActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			datmens.getTextField_Remitente().setText("");
-			datmens.getTextField_Asunto().setText("");
-			datmens.getTextArea_Mensaje().setText("");
+			
+			JOptionPane.showMessageDialog(null, "Añada la información del mensaje", "Información", JOptionPane.INFORMATION_MESSAGE);
+			inicio.getVentanaMensajes().datmens.getTextField_Remitente().setText("");
+			inicio.getVentanaMensajes().datmens.getTextField_Asunto().setText("");
+			inicio.getVentanaMensajes().datmens.getTextArea_Mensaje().setText("");
+			
 		}
+		
 	}
+
 	private class Button_1ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			MiModeloTabla modeloTabla = (MiModeloTabla) table.getModel();
-			int n= table.getSelectedRow();
-			if (n != -1) modeloTabla.eliminaFila(table.getSelectedRow());
-			modeloTabla.fireTableDataChanged();
-			datmens.getTextField_Remitente().setText("");
-			datmens.getTextField_Asunto().setText("");
-			datmens.getTextArea_Mensaje().setText("");
+			int p = JOptionPane.showOptionDialog(null, "¿Está seguro que desea eliminar este proyecto?",
+					"Eliminación de proyecto", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null,
+					null);
+			if (p == 0) {
+				MiModeloTabla modeloTabla = (MiModeloTabla) table.getModel();
+				int n = table.getSelectedRow();
+				if (n != -1)
+					modeloTabla.eliminaFila(table.getSelectedRow());
+				modeloTabla.fireTableDataChanged();
+				datmens.getTextField_Remitente().setText("");
+				datmens.getTextField_Asunto().setText("");
+				datmens.getTextArea_Mensaje().setText("");
+			}
 		}
 	}
 }

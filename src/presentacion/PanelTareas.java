@@ -19,9 +19,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
 import java.awt.ComponentOrientation;
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PanelTareas extends JPanel {
 	private JScrollPane scrollPane;
@@ -55,12 +59,14 @@ public class PanelTareas extends JPanel {
 		add(toolBar, BorderLayout.SOUTH);
 		
 		btnAñadir = new JButton("Añadir");
+		btnAñadir.addActionListener(new BtnAñadirActionListener());
 		btnAñadir.setMinimumSize(new Dimension(100, 30));
 		btnAñadir.setMaximumSize(new Dimension(100, 35));
 		btnAñadir.setIcon(new ImageIcon(PanelTareas.class.getResource("/recursos/icons8-add-property-30.png")));
 		toolBar.add(btnAñadir);
 		
 		btnBorrar = new JButton("Borrar");
+		btnBorrar.addActionListener(new BtnBorrarActionListener());
 		btnBorrar.setMinimumSize(new Dimension(100, 35));
 		btnBorrar.setMaximumSize(new Dimension(100, 35));
 		btnBorrar.setIcon(new ImageIcon(PanelTareas.class.getResource("/recursos/icons8-trash-can-30.png")));
@@ -78,4 +84,19 @@ public class PanelTareas extends JPanel {
 		return modeloTablaTareas;
 	}
 
+	private class BtnBorrarActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			int p = JOptionPane.showOptionDialog(null, "¿Seguro que desea eliminar esta tarea?",
+					"Eliminación de tarea", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null,
+					null);
+			if (p == 0) {
+			}
+		}
+	}
+	private class BtnAñadirActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			JOptionPane.showMessageDialog(null, "Tarea añadida correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+	
 }

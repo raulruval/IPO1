@@ -11,6 +11,8 @@ import javax.swing.UIManager;
 import java.awt.Color;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.TexturePaint;
@@ -184,6 +186,8 @@ public class PanelDatosProyecto extends JPanel {
 			String[] fila1 = { proyectoo.getNombre() };
 			inicio.getVentanaProyectos().aniadefila(fila1);
 			inicio.getVentanaProyectos().getmodelotabla().fireTableDataChanged();
+			
+			JOptionPane.showMessageDialog(null, "Proyecto guardado correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 	private class BtnModificarActionListener implements ActionListener {

@@ -14,6 +14,8 @@ import javax.swing.JTable;
 import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
 import java.awt.ComponentOrientation;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -93,6 +95,7 @@ public class PanelMiembros extends JPanel {
 		for(int i=0; i<(pro.getMiembros().size());i++){
 			String[] fila1 = {miembrosproyecto.get(i).getNombre()};
 			modeloTabla.aniadeFila(fila1);
+			
 		}
 	}
 	public MiModeloTabla gettabla(){
@@ -101,10 +104,16 @@ public class PanelMiembros extends JPanel {
 
 	private class BtnBorrarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			MiModeloTabla modeloTabla = (MiModeloTabla) table.getModel();
-			int n= table.getSelectedRow();
-			if (n != -1) modeloTabla.eliminaFila(table.getSelectedRow());
-			modeloTabla.fireTableDataChanged();
+			int p = JOptionPane.showOptionDialog(null, "¿Seguro que desea eliminar este miembro?",
+					"Eliminación de miembro", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null,
+					null);
+			if (p == 0) {
+				MiModeloTabla modeloTabla = (MiModeloTabla) table.getModel();
+				int n = table.getSelectedRow();
+				if (n != -1)
+					modeloTabla.eliminaFila(table.getSelectedRow());
+				modeloTabla.fireTableDataChanged();
+			}
 		}
 	}
 	private class BtnAñadirActionListener implements ActionListener {
@@ -113,6 +122,7 @@ public class PanelMiembros extends JPanel {
 			int n= inicio.getVentanaProyectos().getTable().getSelectedRow();
 			inicio.getVentanaDatosProyecto().setVisible(false);
 			inicio.getVentanaDatosUsuario().setVisible(true);
+			JOptionPane.showMessageDialog(null, "Añada la información del miembro en la ventana de datos del usuario", "Información", JOptionPane.INFORMATION_MESSAGE);
 			
 			
 		}

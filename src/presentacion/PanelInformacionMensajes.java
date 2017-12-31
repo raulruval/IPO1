@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
@@ -81,6 +83,9 @@ public class PanelInformacionMensajes extends JPanel {
 		gbc_textArea_Mensaje.gridx = 1;
 		gbc_textArea_Mensaje.gridy = 2;
 		add(textArea_Mensaje, gbc_textArea_Mensaje);
+		textArea_Mensaje.setEnabled(false);
+		textField_Asunto.setEnabled(false);
+		textField_Remitente.setEnabled(false);
 		
 		toolBar = new JToolBar();
 		toolBar.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
@@ -92,6 +97,7 @@ public class PanelInformacionMensajes extends JPanel {
 		add(toolBar, gbc_toolBar);
 		
 		btnEnviar = new JButton("Enviar");
+		btnEnviar.addActionListener(new BtnEnviarActionListener());
 		btnEnviar.setMinimumSize(new Dimension(100, 30));
 		btnEnviar.setMaximumSize(new Dimension(100, 35));
 		btnEnviar.setIcon(new ImageIcon(PanelInformacionMensajes.class.getResource("/recursos/icons8-send-30.png")));
@@ -103,9 +109,6 @@ public class PanelInformacionMensajes extends JPanel {
 		btnModificar.setMaximumSize(new Dimension(100, 35));
 		btnModificar.addActionListener(new BtnModificarActionListener());
 		toolBar.add(btnModificar);
-		textArea_Mensaje.setEnabled(false);
-		textField_Asunto.setEnabled(false);
-		textField_Remitente.setEnabled(false);
 
 	}
 	public void setinicio(PanelInicio in) {
@@ -137,4 +140,17 @@ public class PanelInformacionMensajes extends JPanel {
 			textField_Remitente.setEnabled(true);
 		}
 	}
+	private class BtnEnviarActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			
+			JOptionPane.showMessageDialog(null, "Mensaje enviado", "Información", JOptionPane.INFORMATION_MESSAGE);
+			
+			inicio.getVentanaMensajes().datmens.getTextField_Remitente().setText("");
+			inicio.getVentanaMensajes().datmens.getTextField_Asunto().setText("");
+			inicio.getVentanaMensajes().datmens.getTextArea_Mensaje().setText("");
+			
+			
+		}
+	}
+	
 }
