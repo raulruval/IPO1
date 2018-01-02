@@ -95,6 +95,12 @@ public class PanelMensajes extends JPanel {
 			}
 		});
 	}
+	public JButton getButton() {
+		return button;
+	}
+	public JButton getButton_1() {
+		return button_1;
+	}
 	public void setinicio(PanelInicio in) {
 		inicio = in;
 	}

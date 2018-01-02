@@ -157,9 +157,15 @@ public class PanelInformacionMensajes extends JPanel {
 			
 			JOptionPane.showMessageDialog(null, "Mensaje enviado", "Información", JOptionPane.INFORMATION_MESSAGE);
 			
-			inicio.getVentanaMensajes().datmens.getTextField_Remitente().setText("");
-			inicio.getVentanaMensajes().datmens.getTextField_Asunto().setText("");
-			inicio.getVentanaMensajes().datmens.getTextArea_Mensaje().setText("");
+			textArea_Mensaje.setText("");
+			textField_Asunto.setText("");
+			textField_Remitente.setText("");
+			textArea_Mensaje.setEnabled(false);
+			textField_Asunto.setEnabled(false);
+			textField_Remitente.setEnabled(false);
+			btnModificar.setEnabled(false);
+			btnEnviar.setEnabled(false);
+			inicio.getVentanaMensajes().getButton_1().setEnabled(false);
 			
 			
 		}
