@@ -121,6 +121,7 @@ public class PanelDatosProyecto extends JPanel {
 		btnGuardar.setIcon(new ImageIcon(PanelDatosProyecto.class.getResource("/recursos/icons8-save-30.png")));
 		btnGuardar.addActionListener(new BtnGuardarActionListener());
 		toolBar.add(btnGuardar);
+		btnGuardar.setEnabled(false);
 		
 		btnModificar = new JButton("Modificar");
 		btnModificar.setMinimumSize(new Dimension(100, 30));
@@ -128,10 +129,20 @@ public class PanelDatosProyecto extends JPanel {
 		btnModificar.setIcon(new ImageIcon(PanelDatosProyecto.class.getResource("/recursos/icons8-edit-property-30.png")));
 		btnModificar.addActionListener(new BtnModificarActionListener());
 		toolBar.add(btnModificar);
+		btnModificar.setEnabled(false);
+		
 		textDescripcion.setEnabled(false);
 		txtNombre.setEnabled(false);
 		txtResponsable.setEnabled(false);
 
+	}
+
+	public JButton getBtnGuardar() {
+		return btnGuardar;
+	}
+
+	public JButton getBtnModificar() {
+		return btnModificar;
 	}
 
 	public void setinicio(PanelInicio in) {
@@ -167,26 +178,22 @@ public class PanelDatosProyecto extends JPanel {
 			String Nombre = getTxtNombre().getText();
 			String descripcion = getTextDescripcion().getText();
 			String Responsable = getTxtResponsable().getText();
-			ArrayList<Usuario> us = dominio.persistencia.getusuarios();
+			//ArrayList<Usuario> us = dominio.persistencia.getusuarios();
 			ArrayList<Tarea> tar = new ArrayList<Tarea>();
 			ArrayList<Usuario> miembros = new ArrayList<Usuario>();
 			Proyecto proyectoo;
 			Usuario usus;
 
-			if (us.equals(Responsable)) {
+		/*	if (us.equals(Responsable)) {
 				int num = us.indexOf(Responsable);
 				usus = us.get(num);
 			} else {
 				usus = new Usuario(Responsable, "", null, null, "", "", "");
-			}
+			}*/
 			usus = new Usuario(Responsable, "", null, null, "", "", "");
 			miembros.add(usus);
 			proyectoo = new Proyecto(Responsable, descripcion, miembros, tar, usus);
-			dominio.persistencia.aniadeproyecto(proyectoo);
-			String[] fila1 = { proyectoo.getNombre() };
-			inicio.getVentanaProyectos().aniadefila(fila1);
-			inicio.getVentanaProyectos().getmodelotabla().fireTableDataChanged();
-			
+			inicio.getVentanaProyectos().aniadeproyecto(proyectoo);
 			JOptionPane.showMessageDialog(null, "Proyecto guardado correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}

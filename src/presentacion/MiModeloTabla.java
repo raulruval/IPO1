@@ -47,7 +47,9 @@ class MiModeloTabla extends AbstractTableModel {
 
 	public void aniadeFila(Object[] row) {
 		datos.add(row);
+		
 	}
+	
 	public void vaciartabla(){
 		if(datos.size()>0){
 			for(int i=0; i<datos.size();i++){

@@ -59,6 +59,7 @@ public class PanelMiembros extends JPanel {
 		btnAñadir.setMaximumSize(new Dimension(100, 35));
 		btnAñadir.setIcon(new ImageIcon(PanelMiembros.class.getResource("/recursos/icons8-add-property-30.png")));
 		toolBar.add(btnAñadir);
+		btnAñadir.setEnabled(false);
 		
 		btnBorrar = new JButton("Borrar");
 		btnBorrar.addActionListener(new BtnBorrarActionListener());
@@ -66,7 +67,7 @@ public class PanelMiembros extends JPanel {
 		btnBorrar.setMaximumSize(new Dimension(100, 35));
 		btnBorrar.setIcon(new ImageIcon(PanelMiembros.class.getResource("/recursos/icons8-trash-can-30.png")));
 		toolBar.add(btnBorrar);
-		
+		btnBorrar.setEnabled(false);
 		ListSelectionModel rowSM = table.getSelectionModel();
 		rowSM.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
@@ -90,12 +91,23 @@ public class PanelMiembros extends JPanel {
 		});
 
 	}
+	public JButton getBtnAñadir() {
+		return btnAñadir;
+	}
+	public void setBtnAñadir(JButton btnAñadir) {
+		this.btnAñadir = btnAñadir;
+	}
+	public JButton getBtnBorrar() {
+		return btnBorrar;
+	}
+	public void setBtnBorrar(JButton btnBorrar) {
+		this.btnBorrar = btnBorrar;
+	}
 	public void aniadefila(Proyecto pro){
 		ArrayList<Usuario> miembrosproyecto= pro.getMiembros();
-		for(int i=0; i<(pro.getMiembros().size());i++){
+		for(int i=0; i<(pro.getMiembros()).size();i++){
 			String[] fila1 = {miembrosproyecto.get(i).getNombre()};
 			modeloTabla.aniadeFila(fila1);
-			
 		}
 	}
 	public MiModeloTabla gettabla(){

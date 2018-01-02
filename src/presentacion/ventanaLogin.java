@@ -86,9 +86,9 @@ public class ventanaLogin {
 			frmAplicacionDeCorreo.getContentPane().setLayout(new BorderLayout(0, 0));
 			frmAplicacionDeCorreo.getContentPane().add(panel);
 			GridBagLayout gbl_panel = new GridBagLayout();
-			gbl_panel.columnWidths = new int[]{49, 83, 265, 78, 0};
+			gbl_panel.columnWidths = new int[]{49, 83, 273, 78, 0};
 			gbl_panel.rowHeights = new int[]{64, 20, 20, 39, 23, 0, 0};
-			gbl_panel.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+			gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 			gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 			panel.setLayout(gbl_panel);
 			{

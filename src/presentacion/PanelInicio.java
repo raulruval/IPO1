@@ -42,10 +42,10 @@ public class PanelInicio extends JFrame {
 
 	private JPanel contentPane;
 	private JDesktopPane desktopPane;
+	PanelProyectos VentanaProyectos = new PanelProyectos ();
 	PanelDatosProyecto VentanaDatosProyecto = new PanelDatosProyecto();
 	PanelMiembros VentanaMiembros = new PanelMiembros();
 	PanelTareas VentanaTareas = new PanelTareas();
-	PanelProyectos VentanaProyectos = new PanelProyectos ();
 	PanelMensajes VentanaMensajes = new PanelMensajes();
 	PanelInformacionMensajes VentanaInformacionMensaje = new PanelInformacionMensajes();
 	PanelDatosUsuario VentanaDatosUsuario = new PanelDatosUsuario();

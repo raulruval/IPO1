@@ -71,7 +71,7 @@ public class PanelMensajes extends JPanel {
 		button_1.addActionListener(new Button_1ActionListener());
 		button_1.setHorizontalAlignment(SwingConstants.LEFT);
 		toolBar.add(button_1);
-
+		button_1.setEnabled(false);
 		ListSelectionModel rowSM = table.getSelectionModel();
 		rowSM.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
@@ -85,6 +85,12 @@ public class PanelMensajes extends JPanel {
 					datmens.getTextField_Remitente().setText(us.getNombre());
 					datmens.getTextField_Asunto().setText(mens.getAsunto());
 					datmens.getTextArea_Mensaje().setText(contenido);
+					datmens.getTextField_Remitente().setEnabled(false);
+					datmens.getTextField_Asunto().setEnabled(false);
+					datmens.getTextArea_Mensaje().setEnabled(false);
+					datmens.getBtnEnviar().setEnabled(false);
+					button_1.setEnabled(true);
+					inicio.getVentanaInformacionMensaje().getBtnModificar().setEnabled(true);
 				}
 			}
 		});
@@ -98,18 +104,23 @@ public class PanelMensajes extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			
 			JOptionPane.showMessageDialog(null, "Añada la información del mensaje", "Información", JOptionPane.INFORMATION_MESSAGE);
-			inicio.getVentanaMensajes().datmens.getTextField_Remitente().setText("");
-			inicio.getVentanaMensajes().datmens.getTextField_Asunto().setText("");
-			inicio.getVentanaMensajes().datmens.getTextArea_Mensaje().setText("");
+			inicio.getVentanaInformacionMensaje().getTextArea_Mensaje().setText("");
+			inicio.getVentanaInformacionMensaje().getTextField_Asunto().setText("");
+			inicio.getVentanaInformacionMensaje().getTextField_Remitente().setText("");
 			
+			inicio.getVentanaInformacionMensaje().getTextArea_Mensaje().setEnabled(true);
+			inicio.getVentanaInformacionMensaje().getTextField_Asunto().setEnabled(true);
+			inicio.getVentanaInformacionMensaje().getTextField_Remitente().setEnabled(true);
+	
+			inicio.getVentanaInformacionMensaje().getBtnEnviar().setEnabled(true);
 		}
 		
 	}
 
 	private class Button_1ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			int p = JOptionPane.showOptionDialog(null, "¿Está seguro que desea eliminar este proyecto?",
-					"Eliminación de proyecto", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null,
+			int p = JOptionPane.showOptionDialog(null, "¿Está seguro que desea eliminar este mensaje?",
+					"Eliminación de mensaje", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null,
 					null);
 			if (p == 0) {
 				MiModeloTabla modeloTabla = (MiModeloTabla) table.getModel();

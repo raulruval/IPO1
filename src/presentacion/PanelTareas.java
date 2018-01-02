@@ -50,6 +50,8 @@ public class PanelTareas extends JPanel {
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setModel(modeloTablaTareas);
 		table.setCellSelectionEnabled(true);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
 		
 		
 		scrollPane.setViewportView(table);
@@ -64,19 +66,32 @@ public class PanelTareas extends JPanel {
 		btnAñadir.setMaximumSize(new Dimension(100, 35));
 		btnAñadir.setIcon(new ImageIcon(PanelTareas.class.getResource("/recursos/icons8-add-property-30.png")));
 		toolBar.add(btnAñadir);
-		
+		btnAñadir.setEnabled(false);
 		btnBorrar = new JButton("Borrar");
 		btnBorrar.addActionListener(new BtnBorrarActionListener());
 		btnBorrar.setMinimumSize(new Dimension(100, 35));
 		btnBorrar.setMaximumSize(new Dimension(100, 35));
 		btnBorrar.setIcon(new ImageIcon(PanelTareas.class.getResource("/recursos/icons8-trash-can-30.png")));
 		toolBar.add(btnBorrar);
-
+		btnBorrar.setEnabled(false);
+	}
+	public JButton getBtnBorrar() {
+		return btnBorrar;
+	}
+	public void setBtnBorrar(JButton btnBorrar) {
+		this.btnBorrar = btnBorrar;
+	}
+	public JButton getBtnAñadir() {
+		return btnAñadir;
+	}
+	public void setBtnAñadir(JButton btnAñadir) {
+		this.btnAñadir = btnAñadir;
 	}
 	public void aniadefila(Proyecto pro){
 		ArrayList<Tarea> tareasproyecto= pro.getTareas();
 		for(int i=0; i<(pro.getTareas().size());i++){
-			String[] fila1 = {tareasproyecto.get(i).getNombre()};
+			String[] fila1 = {tareasproyecto.get(i).getNombre(), tareasproyecto.get(i).getEncargado().getNombre(),
+					tareasproyecto.get(i).getFechafinal(), tareasproyecto.get(i).getEtiquetas(), tareasproyecto.get(i).getComentarios()};
 			modeloTablaTareas.aniadeFila(fila1);
 		}
 	}
@@ -90,12 +105,21 @@ public class PanelTareas extends JPanel {
 					"Eliminación de tarea", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null,
 					null);
 			if (p == 0) {
+				MimodelotablaTareas modeloTabla = (MimodelotablaTareas) table.getModel();
+				int n = table.getSelectedRow();
+				if (n != -1)
+					modeloTabla.eliminaFila(table.getSelectedRow());
 			}
+			modeloTablaTareas.fireTableDataChanged();
 		}
 	}
 	private class BtnAñadirActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			JOptionPane.showMessageDialog(null, "Tarea añadida correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
+			String[] fila1 = {" ", " "," ", " "," "};
+			modeloTablaTareas.aniadeFila(fila1);
+			modeloTablaTareas.fireTableDataChanged();
+			JOptionPane.showMessageDialog(null, "Tarea añadida correctamente, introduzca la información "
+					+ "en su casilla correspondiente.", "Información", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 	

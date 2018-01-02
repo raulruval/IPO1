@@ -40,7 +40,14 @@ public class PanelProyectos extends JPanel {
 	private JButton btnAadir;
 	private JToolBar toolBar;
 
-	private PanelInicio inicio;
+	PanelInicio inicio;
+	public MiModeloTabla getModeloTabla() {
+		return modeloTabla;
+	}
+
+	public void setModeloTabla(MiModeloTabla modeloTabla) {
+		this.modeloTabla = modeloTabla;
+	}
 	private PanelDatosProyecto datpro;
 
 	ArrayList<Proyecto> proyectos = dominio.persistencia.inicializar();
@@ -93,6 +100,7 @@ public class PanelProyectos extends JPanel {
 		btnBorrar.addActionListener(new BtnBorrarActionListener());
 		btnBorrar.setHorizontalAlignment(SwingConstants.LEFT);
 		toolBar.add(btnBorrar);
+		btnBorrar.setEnabled(false);
 
 		ListSelectionModel rowSM = table.getSelectionModel();
 		rowSM.addListSelectionListener(new ListSelectionListener() {
@@ -108,14 +116,24 @@ public class PanelProyectos extends JPanel {
 					datpro.getTxtNombre().setText(pro.getNombre());
 					datpro.getTextDescripcion().setText(pro.getDescripcion());
 					inicio.getVentanaMiembros().gettabla().vaciartabla();
+					inicio.getVentanaTareas().gettabla().vaciartabla();
 					inicio.getVentanaMiembros().gettabla().fireTableDataChanged();
+					inicio.getVentanaTareas().gettabla().fireTableDataChanged();
 					inicio.getVentanaMiembros().aniadefila(pro);
+					inicio.getVentanaTareas().aniadefila(pro);
+					inicio.getVentanaTareas().gettabla().fireTableDataChanged();
 					inicio.getVentanaMiembros().gettabla().fireTableDataChanged();
 					inicio.getVentanaDatosProyecto().setVisible(true);
 					inicio.getVentanaDatosProyecto().getTxtNombre().setEnabled(false);
 					inicio.getVentanaDatosProyecto().getTxtResponsable().setEnabled(false);
 					inicio.getVentanaDatosProyecto().getTextDescripcion().setEnabled(false);
-					
+					inicio.getVentanaMiembros().getBtnAñadir().setEnabled(true);
+					inicio.getVentanaMiembros().getBtnBorrar().setEnabled(true);
+					inicio.getVentanaTareas().getBtnAñadir().setEnabled(true);
+					inicio.getVentanaTareas().getBtnBorrar().setEnabled(true);
+					inicio.getVentanaDatosProyecto().getBtnModificar().setEnabled(true);
+					inicio.getVentanaDatosProyecto().getBtnGuardar().setEnabled(true);
+					btnBorrar.setEnabled(true);
 				/*/	//// Metido para tareas
 					inicio.getVentanaTareas().gettabla().vaciartabla();
 					inicio.getVentanaTareas().gettabla().fireTableDataChanged();
@@ -143,7 +161,13 @@ public class PanelProyectos extends JPanel {
 			inicio.getVentanaDatosProyecto().getTxtNombre().setText("");
 			inicio.getVentanaDatosProyecto().getTextDescripcion().setText("");
 			inicio.getVentanaDatosProyecto().getTxtResponsable().setText("");
+			inicio.getVentanaDatosProyecto().getTxtNombre().setEnabled(true);
+			inicio.getVentanaDatosProyecto().getTextDescripcion().setEnabled(true);
+			inicio.getVentanaDatosProyecto().getTxtResponsable().setEnabled(true);
 			inicio.getVentanaMiembros().gettabla().vaciartabla();
+			inicio.getVentanaMiembros().gettabla().fireTableDataChanged();
+			inicio.getVentanaTareas().gettabla().vaciartabla();
+			inicio.getVentanaTareas().gettabla().fireTableDataChanged();
 			JOptionPane.showMessageDialog(null, "Añada la información del proyecto en la ventana de datos del proyecto", "Información", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
@@ -178,6 +202,9 @@ public class PanelProyectos extends JPanel {
 
 	public void aniadeproyecto(Proyecto proy) {
 		proyectos.add(proy);
+		String[] fila1 = {proy.getNombre()};
+		modeloTabla.aniadeFila(fila1);
+		modeloTabla.fireTableDataChanged();
 	}
 
 	public MiModeloTabla getmodelotabla() {
@@ -204,4 +231,5 @@ public class PanelProyectos extends JPanel {
 	public ArrayList<Mensaje> getmensajes(){
 		return mensajes;
 	}
+	
 }

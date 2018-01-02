@@ -102,6 +102,7 @@ public class PanelInformacionMensajes extends JPanel {
 		btnEnviar.setMaximumSize(new Dimension(100, 35));
 		btnEnviar.setIcon(new ImageIcon(PanelInformacionMensajes.class.getResource("/recursos/icons8-send-30.png")));
 		toolBar.add(btnEnviar);
+		btnEnviar.setEnabled(false);
 		
 		btnModificar = new JButton("Modificar");
 		btnModificar.setIcon(new ImageIcon(PanelInformacionMensajes.class.getResource("/recursos/icons8-edit-property-30.png")));
@@ -109,7 +110,17 @@ public class PanelInformacionMensajes extends JPanel {
 		btnModificar.setMaximumSize(new Dimension(100, 35));
 		btnModificar.addActionListener(new BtnModificarActionListener());
 		toolBar.add(btnModificar);
+		btnModificar.setEnabled(false);
 
+	}
+	public JButton getBtnModificar() {
+		return btnModificar;
+	}
+	public JButton getBtnEnviar() {
+		return btnEnviar;
+	}
+	public void setBtnEnviar(JButton btnEnviar) {
+		this.btnEnviar = btnEnviar;
 	}
 	public void setinicio(PanelInicio in) {
 		inicio = in;
@@ -138,6 +149,7 @@ public class PanelInformacionMensajes extends JPanel {
 			textArea_Mensaje.setEnabled(true);
 			textField_Asunto.setEnabled(true);
 			textField_Remitente.setEnabled(true);
+			btnEnviar.setEnabled(true);
 		}
 	}
 	private class BtnEnviarActionListener implements ActionListener {
