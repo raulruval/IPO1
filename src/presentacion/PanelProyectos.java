@@ -57,7 +57,7 @@ public class PanelProyectos extends JPanel {
 
 	public PanelProyectos(PanelInicio ini) {
 		inicio=ini;
-		setBorder(new TitledBorder(null, "Proyectos:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		setBorder(new TitledBorder(null, MessagesIPO1Inter.getString("PanelProyectos.0"), TitledBorder.LEADING, TitledBorder.TOP, null, null)); //$NON-NLS-1$
 		setLayout(new BorderLayout(0, 0));
 
 		scrollPane = new JScrollPane();
@@ -84,17 +84,17 @@ public class PanelProyectos extends JPanel {
 		toolBar.setAlignmentX(Component.LEFT_ALIGNMENT);
 		add(toolBar, BorderLayout.SOUTH);
 
-		btnAadir = new JButton("Añadir");
+		btnAadir = new JButton(MessagesIPO1Inter.getString("PanelProyectos.1")); //$NON-NLS-1$
 		btnAadir.setMinimumSize(new Dimension(100, 30));
 		btnAadir.setMaximumSize(new Dimension(100, 35));
-		btnAadir.setIcon(new ImageIcon(PanelProyectos.class.getResource("/recursos/icons8-add-property-30.png")));
+		btnAadir.setIcon(new ImageIcon(PanelProyectos.class.getResource("/recursos/icons8-add-property-30.png"))); //$NON-NLS-1$
 		btnAadir.addActionListener(new BtnAadirActionListener());
 		toolBar.add(btnAadir);
 
-		btnBorrar = new JButton("Borrar");
+		btnBorrar = new JButton(MessagesIPO1Inter.getString("PanelProyectos.3")); //$NON-NLS-1$
 		btnBorrar.setMinimumSize(new Dimension(100, 30));
 		btnBorrar.setMaximumSize(new Dimension(100, 35));
-		btnBorrar.setIcon(new ImageIcon(PanelProyectos.class.getResource("/recursos/icons8-trash-can-30.png")));
+		btnBorrar.setIcon(new ImageIcon(PanelProyectos.class.getResource("/recursos/icons8-trash-can-30.png"))); //$NON-NLS-1$
 		btnBorrar.addActionListener(new BtnBorrarActionListener());
 		btnBorrar.setHorizontalAlignment(SwingConstants.LEFT);
 		toolBar.add(btnBorrar);
@@ -156,9 +156,9 @@ public class PanelProyectos extends JPanel {
 
 	private class BtnAadirActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			inicio.getVentanaDatosProyecto().getTxtNombre().setText("");
-			inicio.getVentanaDatosProyecto().getTextDescripcion().setText("");
-			inicio.getVentanaDatosProyecto().getTxtResponsable().setText("");
+			inicio.getVentanaDatosProyecto().getTxtNombre().setText(""); //$NON-NLS-1$
+			inicio.getVentanaDatosProyecto().getTextDescripcion().setText(""); //$NON-NLS-1$
+			inicio.getVentanaDatosProyecto().getTxtResponsable().setText(""); //$NON-NLS-1$
 			inicio.getVentanaDatosProyecto().getTxtNombre().setEnabled(true);
 			inicio.getVentanaDatosProyecto().getTextDescripcion().setEnabled(true);
 			inicio.getVentanaDatosProyecto().getTxtResponsable().setEnabled(true);
@@ -167,7 +167,7 @@ public class PanelProyectos extends JPanel {
 			inicio.getVentanaMiembros().gettabla().fireTableDataChanged();
 			inicio.getVentanaTareas().gettabla().vaciartabla();
 			inicio.getVentanaTareas().gettabla().fireTableDataChanged();
-			JOptionPane.showMessageDialog(null, "Añada la información del proyecto en la ventana de datos del proyecto", "Información", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, MessagesIPO1Inter.getString("PanelProyectos.8"), MessagesIPO1Inter.getString("PanelProyectos.9"), JOptionPane.INFORMATION_MESSAGE); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -175,8 +175,8 @@ public class PanelProyectos extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			// Ventana de dialogo
 			
-			int p = JOptionPane.showOptionDialog(null, "¿Seguro que desea eliminar este proyecto?",
-					"Eliminación de proyecto", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null,
+			int p = JOptionPane.showOptionDialog(null, MessagesIPO1Inter.getString("PanelProyectos.10"), //$NON-NLS-1$
+					MessagesIPO1Inter.getString("PanelProyectos.11"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, //$NON-NLS-1$
 					null);
 			if (p == 0) {
 				MiModeloTabla modeloTabla = (MiModeloTabla) table.getModel();
@@ -186,9 +186,9 @@ public class PanelProyectos extends JPanel {
 				modeloTabla.fireTableDataChanged();
 				inicio.getVentanaMiembros().gettabla().vaciartabla();
 				inicio.getVentanaMiembros().gettabla().fireTableDataChanged();
-				inicio.getVentanaDatosProyecto().getTxtNombre().setText("");
-				inicio.getVentanaDatosProyecto().getTextDescripcion().setText("");
-				inicio.getVentanaDatosProyecto().getTxtResponsable().setText("");
+				inicio.getVentanaDatosProyecto().getTxtNombre().setText(""); //$NON-NLS-1$
+				inicio.getVentanaDatosProyecto().getTextDescripcion().setText(""); //$NON-NLS-1$
+				inicio.getVentanaDatosProyecto().getTxtResponsable().setText(""); //$NON-NLS-1$
 			}
 
 		}

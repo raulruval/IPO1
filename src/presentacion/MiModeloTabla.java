@@ -4,7 +4,7 @@ import java.util.*;
 import javax.swing.table.*;
 
 class MiModeloTabla extends AbstractTableModel {
-	private String[] nombreColumnas = { "Nombre" };
+	private String[] nombreColumnas = { MessagesIPO1Inter.getString("MiModeloTabla.0") }; //$NON-NLS-1$
 	//private Vector datos = new Vector();
 	private ArrayList<String[]> datos=new ArrayList<String[]>();
 

@@ -33,7 +33,7 @@ public class PanelDatosUsuario extends JPanel {
 	 * Create the panel.
 	 */
 	public PanelDatosUsuario() {
-		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos del usuario:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), MessagesIPO1Inter.getString("PanelDatosUsuario.1"), TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0))); //$NON-NLS-1$ //$NON-NLS-2$
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{176, 233, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 187, 33, 0, 0};
@@ -41,7 +41,7 @@ public class PanelDatosUsuario extends JPanel {
 		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		lblNombre = new JLabel("Usuario:");
+		lblNombre = new JLabel(MessagesIPO1Inter.getString("PanelDatosUsuario.2")); //$NON-NLS-1$
 		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
 		gbc_lblNombre.anchor = GridBagConstraints.EAST;
 		gbc_lblNombre.insets = new Insets(0, 0, 5, 5);
@@ -60,7 +60,7 @@ public class PanelDatosUsuario extends JPanel {
 		add(txtNombre, gbc_txtNombre);
 		txtNombre.setColumns(10);
 		
-		lblDescripcin = new JLabel("Información:");
+		lblDescripcin = new JLabel(MessagesIPO1Inter.getString("PanelDatosUsuario.3")); //$NON-NLS-1$
 		GridBagConstraints gbc_lblDescripcin = new GridBagConstraints();
 		gbc_lblDescripcin.anchor = GridBagConstraints.EAST;
 		gbc_lblDescripcin.insets = new Insets(0, 0, 5, 5);
@@ -77,7 +77,7 @@ public class PanelDatosUsuario extends JPanel {
 		gbc_textDescripcion.gridy = 1;
 		add(textDescripcion, gbc_textDescripcion);
 		
-		lblResponsable = new JLabel("Conocimientos:");
+		lblResponsable = new JLabel(MessagesIPO1Inter.getString("PanelDatosUsuario.4")); //$NON-NLS-1$
 		GridBagConstraints gbc_lblResponsable = new GridBagConstraints();
 		gbc_lblResponsable.anchor = GridBagConstraints.EAST;
 		gbc_lblResponsable.insets = new Insets(0, 0, 5, 5);
@@ -103,13 +103,13 @@ public class PanelDatosUsuario extends JPanel {
 		gbc_toolBar.gridy = 3;
 		add(toolBar, gbc_toolBar);
 		
-		btnGuardar = new JButton("Guardar");
-		btnGuardar.setIcon(new ImageIcon(PanelDatosUsuario.class.getResource("/recursos/icons8-save-30.png")));
+		btnGuardar = new JButton(MessagesIPO1Inter.getString("PanelDatosUsuario.5")); //$NON-NLS-1$
+		btnGuardar.setIcon(new ImageIcon(PanelDatosUsuario.class.getResource("/recursos/icons8-save-30.png"))); //$NON-NLS-1$
 		toolBar.add(btnGuardar);
 		
-		button = new JButton("Modificar");
+		button = new JButton(MessagesIPO1Inter.getString("PanelDatosUsuario.7")); //$NON-NLS-1$
 		button.addActionListener(new ButtonActionListener());
-		button.setIcon(new ImageIcon(PanelDatosUsuario.class.getResource("/recursos/icons8-edit-property-30.png")));
+		button.setIcon(new ImageIcon(PanelDatosUsuario.class.getResource("/recursos/icons8-edit-property-30.png"))); //$NON-NLS-1$
 		button.setMinimumSize(new Dimension(100, 30));
 		button.setMaximumSize(new Dimension(100, 35));
 		toolBar.add(button);

@@ -9,8 +9,8 @@ import javax.swing.table.*;
 
 class MimodelotablaTareas extends AbstractTableModel {
 	
-	String[] columnNames = { "Nombre     ", " Encargado     ", " Fecha final     ", "Etiquetas     ",
-	"Comentarios      " };
+	String[] columnNames = { MessagesIPO1Inter.getString("MimodelotablaTareas.0"), MessagesIPO1Inter.getString("MimodelotablaTareas.1"), MessagesIPO1Inter.getString("MimodelotablaTareas.2"), MessagesIPO1Inter.getString("MimodelotablaTareas.3"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+	MessagesIPO1Inter.getString("MimodelotablaTareas.4") }; //$NON-NLS-1$
 
 	//Vector data = new Vector();
 	private ArrayList<String[]> data=new ArrayList<String[]>();

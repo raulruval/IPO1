@@ -45,7 +45,7 @@ public class PanelDatosProyecto extends JPanel {
 	 * Create the panel.
 	 */
 	public PanelDatosProyecto() {
-		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos del proyecto:",
+		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), MessagesIPO1Inter.getString("PanelDatosProyecto.1"), //$NON-NLS-1$ //$NON-NLS-2$
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 176, 233, 0, 0 };
@@ -54,7 +54,7 @@ public class PanelDatosProyecto extends JPanel {
 		gridBagLayout.rowWeights = new double[] { 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
 
-		lblNombre = new JLabel("Nombre:");
+		lblNombre = new JLabel(MessagesIPO1Inter.getString("PanelDatosProyecto.2")); //$NON-NLS-1$
 		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
 		gbc_lblNombre.anchor = GridBagConstraints.EAST;
 		gbc_lblNombre.insets = new Insets(0, 0, 5, 5);
@@ -72,7 +72,7 @@ public class PanelDatosProyecto extends JPanel {
 		add(txtNombre, gbc_txtNombre);
 		txtNombre.setColumns(10);
 
-		lblDescripcin = new JLabel("Descripción:");
+		lblDescripcin = new JLabel(MessagesIPO1Inter.getString("PanelDatosProyecto.3")); //$NON-NLS-1$
 		GridBagConstraints gbc_lblDescripcin = new GridBagConstraints();
 		gbc_lblDescripcin.anchor = GridBagConstraints.EAST;
 		gbc_lblDescripcin.insets = new Insets(0, 0, 5, 5);
@@ -89,7 +89,7 @@ public class PanelDatosProyecto extends JPanel {
 		gbc_textDescripcion.gridy = 1;
 		add(textDescripcion, gbc_textDescripcion);
 
-		lblResponsable = new JLabel("Responsable:");
+		lblResponsable = new JLabel(MessagesIPO1Inter.getString("PanelDatosProyecto.4")); //$NON-NLS-1$
 		GridBagConstraints gbc_lblResponsable = new GridBagConstraints();
 		gbc_lblResponsable.anchor = GridBagConstraints.EAST;
 		gbc_lblResponsable.insets = new Insets(0, 0, 5, 5);
@@ -115,18 +115,18 @@ public class PanelDatosProyecto extends JPanel {
 		gbc_toolBar.gridy = 3;
 		add(toolBar, gbc_toolBar);
 
-		btnGuardar = new JButton("Guardar");
+		btnGuardar = new JButton(MessagesIPO1Inter.getString("PanelDatosProyecto.5")); //$NON-NLS-1$
 		btnGuardar.setMinimumSize(new Dimension(100, 30));
 		btnGuardar.setMaximumSize(new Dimension(100, 35));
-		btnGuardar.setIcon(new ImageIcon(PanelDatosProyecto.class.getResource("/recursos/icons8-save-30.png")));
+		btnGuardar.setIcon(new ImageIcon(PanelDatosProyecto.class.getResource("/recursos/icons8-save-30.png"))); //$NON-NLS-1$
 		btnGuardar.addActionListener(new BtnGuardarActionListener());
 		toolBar.add(btnGuardar);
 		btnGuardar.setEnabled(false);
 		
-		btnModificar = new JButton("Modificar");
+		btnModificar = new JButton(MessagesIPO1Inter.getString("PanelDatosProyecto.7")); //$NON-NLS-1$
 		btnModificar.setMinimumSize(new Dimension(100, 30));
 		btnModificar.setMaximumSize(new Dimension(100, 35));
-		btnModificar.setIcon(new ImageIcon(PanelDatosProyecto.class.getResource("/recursos/icons8-edit-property-30.png")));
+		btnModificar.setIcon(new ImageIcon(PanelDatosProyecto.class.getResource("/recursos/icons8-edit-property-30.png"))); //$NON-NLS-1$
 		btnModificar.addActionListener(new BtnModificarActionListener());
 		toolBar.add(btnModificar);
 		btnModificar.setEnabled(false);
@@ -190,11 +190,11 @@ public class PanelDatosProyecto extends JPanel {
 			} else {
 				usus = new Usuario(Responsable, "", null, null, "", "", "");
 			}*/
-			usus = new Usuario(Responsable, "", null, null, "", "", "");
+			usus = new Usuario(Responsable, "", null, null, "", "", ""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 			miembros.add(usus);
 			proyectoo = new Proyecto(Responsable, descripcion, miembros, tar, usus);
 			inicio.getVentanaProyectos().aniadeproyecto(proyectoo);
-			JOptionPane.showMessageDialog(null, "Proyecto guardado correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, MessagesIPO1Inter.getString("PanelDatosProyecto.13"), MessagesIPO1Inter.getString("PanelDatosProyecto.14"), JOptionPane.INFORMATION_MESSAGE); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 	private class BtnModificarActionListener implements ActionListener {

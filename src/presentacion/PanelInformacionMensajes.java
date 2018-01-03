@@ -33,7 +33,7 @@ public class PanelInformacionMensajes extends JPanel {
 	 * Create the panel.
 	 */
 	public PanelInformacionMensajes() {
-		setBorder(new TitledBorder(null, "Informaci\u00F3n del mensaje", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		setBorder(new TitledBorder(null, MessagesIPO1Inter.getString("PanelInformacionMensajes.0"), TitledBorder.LEADING, TitledBorder.TOP, null, null)); //$NON-NLS-1$
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{30, 106, 0, 85, 23, 0};
 		gridBagLayout.rowHeights = new int[]{49, 0, 0, 0, 0};
@@ -41,7 +41,7 @@ public class PanelInformacionMensajes extends JPanel {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		lblAsunto = new JLabel("Asunto:");
+		lblAsunto = new JLabel(MessagesIPO1Inter.getString("PanelInformacionMensajes.1")); //$NON-NLS-1$
 		GridBagConstraints gbc_lblAsunto = new GridBagConstraints();
 		gbc_lblAsunto.anchor = GridBagConstraints.EAST;
 		gbc_lblAsunto.insets = new Insets(0, 0, 5, 5);
@@ -58,7 +58,7 @@ public class PanelInformacionMensajes extends JPanel {
 		gbc_textField_Asunto.gridy = 0;
 		add(textField_Asunto, gbc_textField_Asunto);
 		
-		lblRemitente = new JLabel("Remitente:");
+		lblRemitente = new JLabel(MessagesIPO1Inter.getString("PanelInformacionMensajes.2")); //$NON-NLS-1$
 		GridBagConstraints gbc_lblRemitente = new GridBagConstraints();
 		gbc_lblRemitente.anchor = GridBagConstraints.EAST;
 		gbc_lblRemitente.insets = new Insets(0, 0, 5, 5);
@@ -96,16 +96,16 @@ public class PanelInformacionMensajes extends JPanel {
 		gbc_toolBar.gridy = 3;
 		add(toolBar, gbc_toolBar);
 		
-		btnEnviar = new JButton("Enviar");
+		btnEnviar = new JButton(MessagesIPO1Inter.getString("PanelInformacionMensajes.3")); //$NON-NLS-1$
 		btnEnviar.addActionListener(new BtnEnviarActionListener());
 		btnEnviar.setMinimumSize(new Dimension(100, 30));
 		btnEnviar.setMaximumSize(new Dimension(100, 35));
-		btnEnviar.setIcon(new ImageIcon(PanelInformacionMensajes.class.getResource("/recursos/icons8-send-30.png")));
+		btnEnviar.setIcon(new ImageIcon(PanelInformacionMensajes.class.getResource("/recursos/icons8-send-30.png"))); //$NON-NLS-1$
 		toolBar.add(btnEnviar);
 		btnEnviar.setEnabled(false);
 		
-		btnModificar = new JButton("Modificar");
-		btnModificar.setIcon(new ImageIcon(PanelInformacionMensajes.class.getResource("/recursos/icons8-edit-property-30.png")));
+		btnModificar = new JButton(MessagesIPO1Inter.getString("PanelInformacionMensajes.5")); //$NON-NLS-1$
+		btnModificar.setIcon(new ImageIcon(PanelInformacionMensajes.class.getResource("/recursos/icons8-edit-property-30.png"))); //$NON-NLS-1$
 		btnModificar.setMinimumSize(new Dimension(100, 30));
 		btnModificar.setMaximumSize(new Dimension(100, 35));
 		btnModificar.addActionListener(new BtnModificarActionListener());
@@ -155,11 +155,11 @@ public class PanelInformacionMensajes extends JPanel {
 	private class BtnEnviarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			
-			JOptionPane.showMessageDialog(null, "Mensaje enviado", "Información", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, MessagesIPO1Inter.getString("PanelInformacionMensajes.7"), MessagesIPO1Inter.getString("PanelInformacionMensajes.8"), JOptionPane.INFORMATION_MESSAGE); //$NON-NLS-1$ //$NON-NLS-2$
 			
-			textArea_Mensaje.setText("");
-			textField_Asunto.setText("");
-			textField_Remitente.setText("");
+			textArea_Mensaje.setText(""); //$NON-NLS-1$
+			textField_Asunto.setText(""); //$NON-NLS-1$
+			textField_Remitente.setText(""); //$NON-NLS-1$
 			textArea_Mensaje.setEnabled(false);
 			textField_Asunto.setEnabled(false);
 			textField_Remitente.setEnabled(false);

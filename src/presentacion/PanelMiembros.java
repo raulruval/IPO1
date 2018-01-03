@@ -38,7 +38,7 @@ public class PanelMiembros extends JPanel {
 	 */
 	public PanelMiembros() {
 		
-		setBorder(new TitledBorder(null, "Miembros:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		setBorder(new TitledBorder(null, MessagesIPO1Inter.getString("PanelMiembros.0"), TitledBorder.LEADING, TitledBorder.TOP, null, null)); //$NON-NLS-1$
 		setLayout(new BorderLayout(0, 0));
 		
 		scrollPane = new JScrollPane();
@@ -53,19 +53,19 @@ public class PanelMiembros extends JPanel {
 		toolBar.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		add(toolBar, BorderLayout.SOUTH);
 		
-		btnAñadir = new JButton("Añadir");
+		btnAñadir = new JButton(MessagesIPO1Inter.getString("PanelMiembros.1")); //$NON-NLS-1$
 		btnAñadir.addActionListener(new BtnAñadirActionListener());
 		btnAñadir.setMinimumSize(new Dimension(100, 30));
 		btnAñadir.setMaximumSize(new Dimension(100, 35));
-		btnAñadir.setIcon(new ImageIcon(PanelMiembros.class.getResource("/recursos/icons8-add-property-30.png")));
+		btnAñadir.setIcon(new ImageIcon(PanelMiembros.class.getResource("/recursos/icons8-add-property-30.png"))); //$NON-NLS-1$
 		toolBar.add(btnAñadir);
 		btnAñadir.setEnabled(false);
 		
-		btnBorrar = new JButton("Borrar");
+		btnBorrar = new JButton(MessagesIPO1Inter.getString("PanelMiembros.3")); //$NON-NLS-1$
 		btnBorrar.addActionListener(new BtnBorrarActionListener());
 		btnBorrar.setMinimumSize(new Dimension(100, 30));
 		btnBorrar.setMaximumSize(new Dimension(100, 35));
-		btnBorrar.setIcon(new ImageIcon(PanelMiembros.class.getResource("/recursos/icons8-trash-can-30.png")));
+		btnBorrar.setIcon(new ImageIcon(PanelMiembros.class.getResource("/recursos/icons8-trash-can-30.png"))); //$NON-NLS-1$
 		toolBar.add(btnBorrar);
 		btnBorrar.setEnabled(false);
 		ListSelectionModel rowSM = table.getSelectionModel();
@@ -116,8 +116,8 @@ public class PanelMiembros extends JPanel {
 
 	private class BtnBorrarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			int p = JOptionPane.showOptionDialog(null, "¿Seguro que desea eliminar este miembro?",
-					"Eliminación de miembro", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null,
+			int p = JOptionPane.showOptionDialog(null, MessagesIPO1Inter.getString("PanelMiembros.5"), //$NON-NLS-1$
+					MessagesIPO1Inter.getString("PanelMiembros.6"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, //$NON-NLS-1$
 					null);
 			if (p == 0) {
 				MiModeloTabla modeloTabla = (MiModeloTabla) table.getModel();
@@ -134,7 +134,7 @@ public class PanelMiembros extends JPanel {
 			int n= inicio.getVentanaProyectos().getTable().getSelectedRow();
 			inicio.getVentanaDatosProyecto().setVisible(false);
 			inicio.getVentanaDatosUsuario().setVisible(true);
-			JOptionPane.showMessageDialog(null, "Añada la información del miembro en la ventana de datos del usuario", "Información", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, MessagesIPO1Inter.getString("PanelMiembros.7"), MessagesIPO1Inter.getString("PanelMiembros.8"), JOptionPane.INFORMATION_MESSAGE); //$NON-NLS-1$ //$NON-NLS-2$
 			
 			
 		}

@@ -40,7 +40,7 @@ public class PanelTareas extends JPanel {
 	 * Create the panel.
 	 */
 	public PanelTareas() {
-		setBorder(new TitledBorder(null, "Tareas:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		setBorder(new TitledBorder(null, MessagesIPO1Inter.getString("PanelTareas.0"), TitledBorder.LEADING, TitledBorder.TOP, null, null)); //$NON-NLS-1$
 		setLayout(new BorderLayout(0, 0));
 		
 		scrollPane = new JScrollPane();
@@ -60,18 +60,18 @@ public class PanelTareas extends JPanel {
 		toolBar.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		add(toolBar, BorderLayout.SOUTH);
 		
-		btnAñadir = new JButton("Añadir");
+		btnAñadir = new JButton(MessagesIPO1Inter.getString("PanelTareas.1")); //$NON-NLS-1$
 		btnAñadir.addActionListener(new BtnAñadirActionListener());
 		btnAñadir.setMinimumSize(new Dimension(100, 30));
 		btnAñadir.setMaximumSize(new Dimension(100, 35));
-		btnAñadir.setIcon(new ImageIcon(PanelTareas.class.getResource("/recursos/icons8-add-property-30.png")));
+		btnAñadir.setIcon(new ImageIcon(PanelTareas.class.getResource("/recursos/icons8-add-property-30.png"))); //$NON-NLS-1$
 		toolBar.add(btnAñadir);
 		btnAñadir.setEnabled(false);
-		btnBorrar = new JButton("Borrar");
+		btnBorrar = new JButton(MessagesIPO1Inter.getString("PanelTareas.3")); //$NON-NLS-1$
 		btnBorrar.addActionListener(new BtnBorrarActionListener());
 		btnBorrar.setMinimumSize(new Dimension(100, 35));
 		btnBorrar.setMaximumSize(new Dimension(100, 35));
-		btnBorrar.setIcon(new ImageIcon(PanelTareas.class.getResource("/recursos/icons8-trash-can-30.png")));
+		btnBorrar.setIcon(new ImageIcon(PanelTareas.class.getResource("/recursos/icons8-trash-can-30.png"))); //$NON-NLS-1$
 		toolBar.add(btnBorrar);
 		btnBorrar.setEnabled(false);
 	}
@@ -101,8 +101,8 @@ public class PanelTareas extends JPanel {
 
 	private class BtnBorrarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			int p = JOptionPane.showOptionDialog(null, "¿Seguro que desea eliminar esta tarea?",
-					"Eliminación de tarea", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null,
+			int p = JOptionPane.showOptionDialog(null, MessagesIPO1Inter.getString("PanelTareas.5"), //$NON-NLS-1$
+					MessagesIPO1Inter.getString("PanelTareas.6"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, //$NON-NLS-1$
 					null);
 			if (p == 0) {
 				MimodelotablaTareas modeloTabla = (MimodelotablaTareas) table.getModel();
@@ -115,11 +115,11 @@ public class PanelTareas extends JPanel {
 	}
 	private class BtnAñadirActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			String[] fila1 = {" ", " "," ", " "," "};
+			String[] fila1 = {" ", " "," ", " "," "}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
 			modeloTablaTareas.aniadeFila(fila1);
 			modeloTablaTareas.fireTableDataChanged();
-			JOptionPane.showMessageDialog(null, "Tarea añadida correctamente, introduzca la información "
-					+ "en su casilla correspondiente.", "Información", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, MessagesIPO1Inter.getString("PanelTareas.12") //$NON-NLS-1$
+					+ MessagesIPO1Inter.getString("PanelTareas.13"), MessagesIPO1Inter.getString("PanelTareas.14"), JOptionPane.INFORMATION_MESSAGE); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 	

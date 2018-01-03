@@ -59,16 +59,16 @@ public class PanelMensajes extends JPanel {
 		toolBar.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		add(toolBar, BorderLayout.SOUTH);
 		
-		button = new JButton("Añadir");
+		button = new JButton(MessagesIPO1Inter.getString("PanelMensajes.0")); //$NON-NLS-1$
 		button.setMinimumSize(new Dimension(100, 30));
 		button.setMaximumSize(new Dimension(100, 35));
-		button.setIcon(new ImageIcon(PanelMensajes.class.getResource("/recursos/icons8-new-message-30.png")));
+		button.setIcon(new ImageIcon(PanelMensajes.class.getResource("/recursos/icons8-new-message-30.png"))); //$NON-NLS-1$
 		button.addActionListener(new ButtonActionListener());
 		toolBar.add(button);
 		
-		button_1 = new JButton("Borrar");
+		button_1 = new JButton(MessagesIPO1Inter.getString("PanelMensajes.2")); //$NON-NLS-1$
 		button_1.setMaximumSize(new Dimension(100, 35));
-		button_1.setIcon(new ImageIcon(PanelMensajes.class.getResource("/recursos/icons8-trash-can-30.png")));
+		button_1.setIcon(new ImageIcon(PanelMensajes.class.getResource("/recursos/icons8-trash-can-30.png"))); //$NON-NLS-1$
 		button_1.addActionListener(new Button_1ActionListener());
 		button_1.setHorizontalAlignment(SwingConstants.LEFT);
 		toolBar.add(button_1);
@@ -113,10 +113,10 @@ public class PanelMensajes extends JPanel {
 	private class ButtonActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			
-			JOptionPane.showMessageDialog(null, "Añada la información del mensaje", "Información", JOptionPane.INFORMATION_MESSAGE);
-			inicio.getVentanaInformacionMensaje().getTextArea_Mensaje().setText("");
-			inicio.getVentanaInformacionMensaje().getTextField_Asunto().setText("");
-			inicio.getVentanaInformacionMensaje().getTextField_Remitente().setText("");
+			JOptionPane.showMessageDialog(null, MessagesIPO1Inter.getString("PanelMensajes.4"), MessagesIPO1Inter.getString("PanelMensajes.5"), JOptionPane.INFORMATION_MESSAGE); //$NON-NLS-1$ //$NON-NLS-2$
+			inicio.getVentanaInformacionMensaje().getTextArea_Mensaje().setText(""); //$NON-NLS-1$
+			inicio.getVentanaInformacionMensaje().getTextField_Asunto().setText(""); //$NON-NLS-1$
+			inicio.getVentanaInformacionMensaje().getTextField_Remitente().setText(MessagesIPO1Inter.getString("PanelMensajes.8")); //$NON-NLS-1$
 			
 			inicio.getVentanaInformacionMensaje().getTextArea_Mensaje().setEnabled(true);
 			inicio.getVentanaInformacionMensaje().getTextField_Asunto().setEnabled(true);
@@ -129,8 +129,8 @@ public class PanelMensajes extends JPanel {
 
 	private class Button_1ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			int p = JOptionPane.showOptionDialog(null, "¿Está seguro que desea eliminar este mensaje?",
-					"Eliminación de mensaje", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null,
+			int p = JOptionPane.showOptionDialog(null, MessagesIPO1Inter.getString("PanelMensajes.9"), //$NON-NLS-1$
+					MessagesIPO1Inter.getString("PanelMensajes.10"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, //$NON-NLS-1$
 					null);
 			if (p == 0) {
 				MiModeloTabla modeloTabla = (MiModeloTabla) table.getModel();
@@ -138,9 +138,9 @@ public class PanelMensajes extends JPanel {
 				if (n != -1)
 					modeloTabla.eliminaFila(table.getSelectedRow());
 				modeloTabla.fireTableDataChanged();
-				datmens.getTextField_Remitente().setText("");
-				datmens.getTextField_Asunto().setText("");
-				datmens.getTextArea_Mensaje().setText("");
+				datmens.getTextField_Remitente().setText(""); //$NON-NLS-1$
+				datmens.getTextField_Asunto().setText(""); //$NON-NLS-1$
+				datmens.getTextArea_Mensaje().setText(""); //$NON-NLS-1$
 			}
 		}
 	}
