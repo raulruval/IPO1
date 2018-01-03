@@ -3,7 +3,9 @@ package presentacion;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Frame;
 import java.awt.Toolkit;
+import java.awt.Window;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -25,6 +27,7 @@ import java.awt.Insets;
 import javax.swing.UIManager;
 import java.awt.Color;
 import javax.swing.JToolBar;
+import javax.swing.SwingUtilities;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -74,11 +77,10 @@ public class PanelInicio extends JFrame {
 		VentanaProyectos = ventanaProyectos;
 	}
 
-	private final JButton btnInicio = new JButton("Inicio");
-	private final JButton btnMensajes = new JButton("Mensajes");
+	private final JButton btnInicio = new JButton(MessagesIPO1Inter.getString("PanelInicio.btnInicio.text")); //$NON-NLS-1$
+	private final JButton btnMensajes = new JButton(MessagesIPO1Inter.getString("PanelInicio.btnMensajes.text")); //$NON-NLS-1$
 	private final JPanel panel_Idioma = new JPanel();
-	private final JComboBox comboBox = new JComboBox();
-	private final JButton btnAyuda = new JButton("");
+	private final JButton btnAyuda = new JButton(""); //$NON-NLS-1$
 	private final JPanel panel_DerechaArriba = new JPanel();
 	private final JPanel panel_DechaAbajo = new JPanel();
 	private final JPanel panel_Izquierda = new JPanel();
@@ -87,6 +89,8 @@ public class PanelInicio extends JFrame {
 	private final JPanel panel_IzqArriba = new JPanel();
 	private final JPanel panel_IzqAbajo = new JPanel();
 	private final JSplitPane splitPane_Izq = new JSplitPane();
+	private final JButton button = new JButton(MessagesIPO1Inter.getString("PanelInicio.button.text")); //$NON-NLS-1$
+	private final JButton button_1 = new JButton(MessagesIPO1Inter.getString("PanelInicio.button_1.text")); //$NON-NLS-1$
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -94,6 +98,7 @@ public class PanelInicio extends JFrame {
 				try {
 					PanelInicio frame = new PanelInicio();
 					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -103,8 +108,8 @@ public class PanelInicio extends JFrame {
 
 	 
 	public PanelInicio() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(PanelInicio.class.getResource("/recursos/icons8-caballete-40.png")));
-		setTitle("Gestión de proyectos\r\n");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(PanelInicio.class.getResource("/recursos/icons8-caballete-40.png"))); //$NON-NLS-1$
+		setTitle(MessagesIPO1Inter.getString("PanelInicio.this.title")); //$NON-NLS-1$
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); // Para que se abra a la dimensión de la pantalla
@@ -135,7 +140,7 @@ public class PanelInicio extends JFrame {
 		desktopPane.add(panel_Inicio, gbc_panel_Inicio);
 		btnInicio.setIconTextGap(6);
 		btnInicio.addMouseListener(new BtnInicioMouseListener());
-		btnInicio.setIcon(new ImageIcon(PanelInicio.class.getResource("/recursos/inicio.png")));
+		btnInicio.setIcon(new ImageIcon(PanelInicio.class.getResource("/recursos/inicio.png"))); //$NON-NLS-1$
 		btnInicio.setPreferredSize(new Dimension(500, 35));
 		
 		panel_Inicio.add(btnInicio);
@@ -144,7 +149,7 @@ public class PanelInicio extends JFrame {
 		btnMensajes.setMaximumSize(new Dimension(63, 25));
 		
 		btnMensajes.addMouseListener(new BtnMensajesMouseListener());
-		btnMensajes.setIcon(new ImageIcon(PanelInicio.class.getResource("/recursos/icons8-secured-letter-30.png")));
+		btnMensajes.setIcon(new ImageIcon(PanelInicio.class.getResource("/recursos/icons8-secured-letter-30.png"))); //$NON-NLS-1$
 		btnMensajes.setPreferredSize(new Dimension(500, 35));
 		
 		panel_Inicio.add(btnMensajes);
@@ -155,13 +160,18 @@ public class PanelInicio extends JFrame {
 		gbc_panel_Idioma.gridx = 4;
 		gbc_panel_Idioma.gridy = 0;
 		desktopPane.add(panel_Idioma, gbc_panel_Idioma);
-		comboBox.setPreferredSize(new Dimension(100, 35));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Español", "Ingles"}));
-		comboBox.setToolTipText("Idioma");
-		
-		panel_Idioma.add(comboBox);
 		btnAyuda.addActionListener(new BtnAyudaActionListener());
-		btnAyuda.setIcon(new ImageIcon(PanelInicio.class.getResource("/recursos/ayuda.png")));
+		button.addActionListener(new  Button_2ActionListener());
+		button.setPreferredSize(new Dimension(100, 35));
+		button.setIcon(new ImageIcon(PanelInicio.class.getResource("/recursos/banderaEsp.gif")));
+		
+		panel_Idioma.add(button);
+		button_1.addActionListener(new Button_1ActionListener());
+		button_1.setIcon(new ImageIcon(PanelInicio.class.getResource("/recursos/banderaIng.gif")));
+		button_1.setPreferredSize(new Dimension(100, 35));
+		
+		panel_Idioma.add(button_1);
+		btnAyuda.setIcon(new ImageIcon(PanelInicio.class.getResource("/recursos/ayuda.png"))); //$NON-NLS-1$
 		btnAyuda.setPreferredSize(new Dimension(80, 35));
 		panel_Idioma.add(btnAyuda);
 		
@@ -175,18 +185,18 @@ public class PanelInicio extends JFrame {
 		panel_Izquierda.setLayout(new CardLayout(0, 0));
 		splitPane_Izq.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		
-		panel_Izquierda.add(splitPane_Izq, "splitPane_Izquerda");
+		panel_Izquierda.add(splitPane_Izq, "splitPane_Izquerda"); //$NON-NLS-1$
 		panel_IzqAbajo.setMinimumSize(new Dimension(10, 300));
 		splitPane_Izq.setRightComponent(panel_IzqAbajo);
 		panel_IzqAbajo.setLayout(new CardLayout(0, 0));
 		
-		panel_IzqAbajo.add(VentanaMiembros, "VentanaMiembros");
+		panel_IzqAbajo.add(VentanaMiembros, "VentanaMiembros"); //$NON-NLS-1$
 		VentanaMiembros.setinicio(this);
 		panel_IzqArriba.setMinimumSize(new Dimension(10, 350));
 		splitPane_Izq.setLeftComponent(panel_IzqArriba);
 		panel_IzqArriba.setLayout(new CardLayout(0, 0));
 		VentanaProyectos.setPreferredSize(new Dimension(464, 291));
-		panel_IzqArriba.add(VentanaProyectos, "VentanaProyectos");
+		panel_IzqArriba.add(VentanaProyectos, "VentanaProyectos"); //$NON-NLS-1$
 		VentanaProyectos.setinicio(this);
 		
 		GridBagConstraints gbc_panel_Derecha = new GridBagConstraints();
@@ -202,19 +212,19 @@ public class PanelInicio extends JFrame {
 		
 		VentanaInformacionMensaje.setinicio(this);
 		VentanaMensajes.setinicio(this);
-		panel_Derecha.add(splitPane_Der, "splitPane_Derecha");
+		panel_Derecha.add(splitPane_Der, "splitPane_Derecha"); //$NON-NLS-1$
 		panel_DerechaArriba.setMinimumSize(new Dimension(10, 350));
 		splitPane_Der.setLeftComponent(panel_DerechaArriba);
 		panel_DerechaArriba.setLayout(new CardLayout(0, 0));
-		panel_DerechaArriba.add(VentanaDatosProyecto, "VentanaDatosProyecto");
+		panel_DerechaArriba.add(VentanaDatosProyecto, "VentanaDatosProyecto"); //$NON-NLS-1$
 		panel_DechaAbajo.setMinimumSize(new Dimension(10, 300));
 		splitPane_Der.setRightComponent(panel_DechaAbajo);
 		panel_DechaAbajo.setLayout(new CardLayout(0, 0));
-		panel_DechaAbajo.add(VentanaTareas, "VentanaTareas");
-		panel_Derecha.add(VentanaInformacionMensaje, "VentanaInformacionMensaje");
-		panel_Izquierda.add(VentanaMensajes,"VentanaMensajes");
+		panel_DechaAbajo.add(VentanaTareas, "VentanaTareas"); //$NON-NLS-1$
+		panel_Derecha.add(VentanaInformacionMensaje, "VentanaInformacionMensaje"); //$NON-NLS-1$
+		panel_Izquierda.add(VentanaMensajes,"VentanaMensajes"); //$NON-NLS-1$
 		
-		panel_DerechaArriba.add(VentanaDatosUsuario, "VentanaDatosUsuario");
+		panel_DerechaArriba.add(VentanaDatosUsuario, "VentanaDatosUsuario"); //$NON-NLS-1$
 		
 		
 	
@@ -300,9 +310,35 @@ public class PanelInicio extends JFrame {
 	private class BtnAyudaActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 		
-			JOptionPane.showMessageDialog(null, "El proyecto ha sido realizado por:\nSergio Rodriguez Salguero y Raúl Ruiz del valle Álvarez.", "Información", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, MessagesIPO1Inter.getString("PanelInicio.13"), MessagesIPO1Inter.getString("PanelInicio.14"), JOptionPane.INFORMATION_MESSAGE); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
+	private class Button_2ActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			
+					MessagesIPO1Inter.setIdioma("Español");
+					setVisible(false);
+					PanelInicio frame = new PanelInicio();
+					frame.setVisible(true);
+		
+			
+		}
+	}
+
+	private class Button_1ActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			
+					MessagesIPO1Inter.setIdioma("inglés");
+					setVisible(false);
+					PanelInicio frame = new PanelInicio();
+					frame.setVisible(true);
+		
+			
+		}
+	}
+	
+	
+
 	
 }
 
