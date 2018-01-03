@@ -39,6 +39,7 @@ public class PanelMensajes extends JPanel {
 	 * Create the panel.
 	 */
 	public PanelMensajes() {
+		modeloTabla.vaciartabla();
 		setLayout(new BorderLayout(0, 0));
 		scrollPane = new JScrollPane();
 		add(scrollPane, BorderLayout.CENTER);
@@ -94,6 +95,9 @@ public class PanelMensajes extends JPanel {
 				}
 			}
 		});
+	}
+	public MiModeloTabla getModeloTabla() {
+		return modeloTabla;
 	}
 	public JButton getButton() {
 		return button;

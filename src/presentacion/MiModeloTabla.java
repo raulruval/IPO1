@@ -5,7 +5,8 @@ import javax.swing.table.*;
 
 class MiModeloTabla extends AbstractTableModel {
 	private String[] nombreColumnas = { "Nombre" };
-	private Vector datos = new Vector();
+	//private Vector datos = new Vector();
+	private ArrayList<String[]> datos=new ArrayList<String[]>();
 
 	public int getColumnCount() {
 		return nombreColumnas.length;
@@ -20,7 +21,7 @@ class MiModeloTabla extends AbstractTableModel {
 	}
 
 	public Object getValueAt(int row, int col) {
-		Object[] fila = (Object[]) datos.elementAt(row);
+		Object[] fila = (Object[]) datos.get(row);
 		return fila[col];
 	}
 
@@ -34,7 +35,7 @@ class MiModeloTabla extends AbstractTableModel {
 
 	public void setValueAt(Object value, int row, int col) {
 		if (row < getRowCount() && col < getColumnCount()) {
-			Object[] fila = (Object[]) datos.elementAt(row);
+			Object[] fila = (Object[]) datos.get(row);
 			fila[col] = value;
 			fireTableCellUpdated(row, col);
 		}
@@ -46,16 +47,20 @@ class MiModeloTabla extends AbstractTableModel {
 	}
 
 	public void aniadeFila(Object[] row) {
-		datos.add(row);
+		datos.add((String[]) row);
 		
 	}
 	
 	public void vaciartabla(){
+		/*
 		if(datos.size()>0){
 			for(int i=0; i<datos.size();i++){
 				datos.removeElementAt(i);
 			}
 		}
-		
+		*/
+		while(datos.size()>0){
+			eliminaFila(0);
+		}
 	}
 }

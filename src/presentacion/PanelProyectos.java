@@ -50,15 +50,13 @@ public class PanelProyectos extends JPanel {
 	}
 	private PanelDatosProyecto datpro;
 
-	ArrayList<Proyecto> proyectos = dominio.persistencia.inicializar();
-	ArrayList<Usuario> usuarios = dominio.persistencia.getusuarios();
-	ArrayList<Mensaje> mensajes=dominio.persistencia.getmensajes();
-	ArrayList<Tarea> tareas=dominio.persistencia.getTareas();
+	
 	
 	private Proyecto pro;
 	MiModeloTabla modeloTabla = new MiModeloTabla();
 
-	public PanelProyectos() {
+	public PanelProyectos(PanelInicio ini) {
+		inicio=ini;
 		setBorder(new TitledBorder(null, "Proyectos:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		setLayout(new BorderLayout(0, 0));
 
@@ -74,8 +72,8 @@ public class PanelProyectos extends JPanel {
 		// modeloTabla.aniadeFila(fila1);
 		// proyectos = dominio.persistencia.inicializar();
 		// usuarios = dominio.persistencia.getusuarios();
-		for (int i = 0; i < proyectos.size(); i++) {
-			String[] fila1 = { proyectos.get(i).getNombre() };
+		for (int i = 0; i < ((inicio.getProyectos()).size()); i++) {
+			String[] fila1 = { inicio.getProyectos().get(i).getNombre() };
 			modeloTabla.aniadeFila(fila1);
 		}
 
@@ -108,7 +106,7 @@ public class PanelProyectos extends JPanel {
 				ListSelectionModel lsm = (ListSelectionModel) e.getSource();
 				if (!lsm.isSelectionEmpty()) {
 					int filaSeleccionada = lsm.getMinSelectionIndex();
-					pro = proyectos.get(filaSeleccionada);
+					pro = inicio.getProyectos().get(filaSeleccionada);
 					Usuario us = pro.getResponsable();
 					String nombre = us.getNombre();
 					datpro = inicio.getVentanaDatosProyecto();
@@ -164,6 +162,7 @@ public class PanelProyectos extends JPanel {
 			inicio.getVentanaDatosProyecto().getTxtNombre().setEnabled(true);
 			inicio.getVentanaDatosProyecto().getTextDescripcion().setEnabled(true);
 			inicio.getVentanaDatosProyecto().getTxtResponsable().setEnabled(true);
+			inicio.getVentanaDatosProyecto().getBtnGuardar().setEnabled(true);
 			inicio.getVentanaMiembros().gettabla().vaciartabla();
 			inicio.getVentanaMiembros().gettabla().fireTableDataChanged();
 			inicio.getVentanaTareas().gettabla().vaciartabla();
@@ -197,11 +196,11 @@ public class PanelProyectos extends JPanel {
 	}
 
 	public ArrayList<Proyecto> getproyectos() {
-		return proyectos;
+		return inicio.getProyectos();
 	}
 
 	public void aniadeproyecto(Proyecto proy) {
-		proyectos.add(proy);
+		inicio.getProyectos().add(proy);
 		String[] fila1 = {proy.getNombre()};
 		modeloTabla.aniadeFila(fila1);
 		modeloTabla.fireTableDataChanged();
@@ -212,7 +211,7 @@ public class PanelProyectos extends JPanel {
 	}
 
 	public ArrayList<Usuario> getusuarios() {
-		return usuarios;
+		return inicio.getUsuarios();
 	}
 
 	public void aniadefila(String[] fila1) {
@@ -222,14 +221,12 @@ public class PanelProyectos extends JPanel {
 	}
 
 	public ArrayList<Mensaje> getMensajes() {
-		return mensajes;
+		return inicio.getMensajes();
 	}
 
-	public void setMensajes(ArrayList<Mensaje> mensajes) {
-		this.mensajes = mensajes;
-	}
+	
 	public ArrayList<Mensaje> getmensajes(){
-		return mensajes;
+		return inicio.getMensajes();
 	}
 	
 }

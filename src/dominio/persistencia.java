@@ -22,13 +22,13 @@ public class persistencia {
 	
 	
 	public static ArrayList<Proyecto> inicializar() {
-		us1 = new Usuario("Pepe Rodriguez Romero", "Profesor", null, tareas1, "38 años y soltero",
+		us1 = new Usuario("Pepe Rodriguez Romero", "Profesor", "38 años y soltero",
 				"Estudio en michigan", "Economia, matematicas, etc..");
-		us2 = new Usuario("Raul Sanchez Romerijo", "Economico", null, tareas2, "27 años y recien titulado",
+		us2 = new Usuario("Raul Sanchez Romerijo", "Economico", "27 años y recien titulado",
 				"Estudio en Ciudad Real", "Economia de pimes");
-		us3 = new Usuario("Inés Cepeda Ruiz", "Secretaria", null, tareas1, "39 años y experimentada",
+		us3 = new Usuario("Inés Cepeda Ruiz", "Secretaria", "39 años y experimentada",
 				"Gran experiencia en el mundo de la empresa", "Economia, matematicas, etc..");
-		us4 = new Usuario("Raquel Marquez Salguero", "Gerente", null, tareas3, "29 años",
+		us4 = new Usuario("Raquel Marquez Salguero", "Gerente", "29 años",
 				"Master en economicas", "Gran curriculum");
 		
 		usuarios1.add(us1);
@@ -40,13 +40,13 @@ public class persistencia {
 		usuarios1.add(us4);
 		usuarios.add(us4);
 		
-		Usuario us5 = new Usuario("Pilar Salguero Hinarejos", "Administrativa", null, tareas1, "47 años",
+		Usuario us5 = new Usuario("Pilar Salguero Hinarejos", "Administrativa", "47 años",
 				"Estudio en Toledo", "Economia, matematicas, etc..");
-		Usuario us6 = new Usuario("Jaime Martin Navarro", "Limpiador", null, tareas3, "57 años",
+		Usuario us6 = new Usuario("Jaime Martin Navarro", "Limpiador", "57 años",
 				" ", "Habilidoso y efectivo");
-		Usuario us7 = new Usuario("Ionut Florin Santori", "Estudiante", null, tareas1, "39 años",
+		Usuario us7 = new Usuario("Ionut Florin Santori", "Estudiante", "39 años",
 				" ", " ");
-		Usuario us8 = new Usuario("Pilar Ruiz Sanchez", "RRPP", null, tareas2, "29 años",
+		Usuario us8 = new Usuario("Pilar Ruiz Sanchez", "RRPP", "29 años",
 				"Publicidad y marketing", "Gran curriculum");
 		
 		usuarios2.add(us5);
@@ -115,5 +115,46 @@ public class persistencia {
 		
 		return mensajes;
 	}
-
+ public static void vaciartodo(){
+	 int num=usuarios.size()/2;
+	 while(usuarios.size()>num){
+		 usuarios.remove(0);
+	 }
+	 num=usuarios1.size()/2;
+	 while(usuarios1.size()>num){
+		 usuarios1.remove(0);
+	 }
+	 num=usuarios2.size()/2;
+	 while(usuarios2.size()>num){
+		 usuarios2.remove(0);
+	 }
+	 num=usuarios3.size()/2;
+	 while(usuarios3.size()>num){
+		 usuarios3.remove(0);
+	 }
+	 num=tareas1.size()/2;
+	 while(tareas1.size()>num){
+		 tareas1.remove(0);
+	 }
+	 num=tareas2.size()/2;
+	 while(tareas2.size()>num){
+		 tareas2.remove(0);
+	 }
+	 num=tareas3.size()/2;
+	 while(tareas3.size()>num){
+		 tareas3.remove(0);
+	 }
+	 num=tareas.size()/2;
+	 while(tareas.size()>num){
+		 tareas.remove(0);
+	 }
+	 num=mensajes.size()/2;
+	 while(mensajes.size()>num){
+		 mensajes.remove(0);
+	 }
+	 num=proyectos.size()/2;
+	 while(proyectos.size()>num){
+		 proyectos.remove(0);
+	 }
+ }
 }

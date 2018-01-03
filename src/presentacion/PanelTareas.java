@@ -89,7 +89,7 @@ public class PanelTareas extends JPanel {
 	}
 	public void aniadefila(Proyecto pro){
 		ArrayList<Tarea> tareasproyecto= pro.getTareas();
-		for(int i=0; i<(pro.getTareas().size());i++){
+		for(int i=0; i<(pro.getTareas().size())/2;i++){
 			String[] fila1 = {tareasproyecto.get(i).getNombre(), tareasproyecto.get(i).getEncargado().getNombre(),
 					tareasproyecto.get(i).getFechafinal(), tareasproyecto.get(i).getEtiquetas(), tareasproyecto.get(i).getComentarios()};
 			modeloTablaTareas.aniadeFila(fila1);

@@ -12,8 +12,8 @@ class MimodelotablaTareas extends AbstractTableModel {
 	String[] columnNames = { "Nombre     ", " Encargado     ", " Fecha final     ", "Etiquetas     ",
 	"Comentarios      " };
 
-	Vector data = new Vector();
-
+	//Vector data = new Vector();
+	private ArrayList<String[]> data=new ArrayList<String[]>();
 
 	public int getColumnCount() {
 		return columnNames.length;
@@ -28,7 +28,7 @@ class MimodelotablaTareas extends AbstractTableModel {
 	}
 
 	public Object getValueAt(int row, int col) {
-		Object[] fila = (Object[]) data.elementAt(row);
+		Object[] fila = (Object[]) data.get(row);
 		return fila[col];
 	}
 
@@ -42,7 +42,7 @@ class MimodelotablaTareas extends AbstractTableModel {
 
 	public void setValueAt(Object value, int row, int col) {
 		if (row < getRowCount() && col < getColumnCount()) {
-			Object[] fila = (Object[]) data.elementAt(row);
+			Object[] fila = (Object[]) data.get(row);
 			fila[col] = value;
 			fireTableCellUpdated(row, col);
 		}
@@ -54,14 +54,17 @@ class MimodelotablaTareas extends AbstractTableModel {
 	}
 
 	public void aniadeFila(Object[] row) {
-		data.add(row);
+		data.add((String[]) row);
 	}
 	public void vaciartabla(){
-		if(data.size()>0){
+		/*if(data.size()>0){
 			for(int i=0; i<data.size();i++){
-				data.removeElementAt(i);
+				data.remove(i);
 			}
 		}
-		
+		*/
+		while(data.size()>0){
+			eliminaFila(0);
+		}
 	}
 }

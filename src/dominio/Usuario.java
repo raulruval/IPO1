@@ -21,6 +21,15 @@ public Usuario(String nombre, String rol, Proyecto proyectos, ArrayList<Tarea> t
 	this.conocimientos = conocimientos;
 	this.habilidades = habilidades;
 }
+public Usuario(String nombre, String rol, String informacion,
+		String conocimientos, String habilidades) {
+	super();
+	this.nombre = nombre;
+	this.rol = rol;
+	this.informacion = informacion;
+	this.conocimientos = conocimientos;
+	this.habilidades = habilidades;
+}
 public String getNombre() {
 	return nombre;
 }
