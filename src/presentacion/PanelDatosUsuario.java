@@ -38,6 +38,7 @@ public class PanelDatosUsuario extends JPanel {
 	PanelInicio inicio;
 	Proyecto pro;
 	int posicion=0;
+	int posicion1=-1;
 	/**
 	 * Create the panel.
 	 */
@@ -165,7 +166,9 @@ public class PanelDatosUsuario extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			if(posicion==0){
 				Usuario us= new Usuario( txtNombre.getText(),textDescripcion.getText(), textDescripcion.getText(),txtResponsable.getText(),textDescripcion.getText() );
-				pro.getMiembros().add(inicio.getVentanaMiembros().gettabla().getRowCount(), us);
+				ArrayList<Usuario> miembros=pro.getMiembros();
+				miembros.add(inicio.getVentanaMiembros().gettabla().getRowCount(), us);
+				inicio.getProyectos().get(posicion1).setMiembros(miembros);
 				inicio.getVentanaMiembros().aniademiembro(us);
 				
 			} else if(posicion!=0){
@@ -184,5 +187,8 @@ public class PanelDatosUsuario extends JPanel {
 	}
 	public void setusuario(int posicion){
 		this.posicion=posicion;
+	}
+	public void setposicion1(int pos){
+		posicion1=pos;
 	}
 }

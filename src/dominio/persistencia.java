@@ -21,6 +21,9 @@ public class persistencia {
 	static Usuario us4;
 	
 	
+	public static ArrayList<Proyecto> getProyectos() {
+		return proyectos;
+	}
 	public static ArrayList<Proyecto> inicializar() {
 		us1 = new Usuario("Pepe Rodriguez Romero", "Profesor", "38 años y soltero",
 				"Estudio en michigan", "Economia, matematicas, etc..");

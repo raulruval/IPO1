@@ -188,9 +188,13 @@ public class PanelDatosProyecto extends JPanel {
 				miembros.add(usus);
 				proyectoo = new Proyecto(Nombre, descripcion, miembros, tar, usus);
 				inicio.getProyectos().add(inicio.getVentanaProyectos().getmodelotabla().getRowCount(),proyectoo);
+				dominio.persistencia.getProyectos().add(inicio.getVentanaProyectos().getmodelotabla().getRowCount(),proyectoo);
 				String[] fila1 = { Nombre };
 				inicio.getVentanaProyectos().getModeloTabla().aniadeFila(fila1);
+				String[] fila2= { Responsable };
+				inicio.getVentanaMiembros().gettabla().aniadeFila(fila2);
 				inicio.getVentanaProyectos().getmodelotabla().fireTableDataChanged();
+				inicio.getVentanaMiembros().gettabla().fireTableDataChanged();
 			}
 			else if(inicio.getVentanaProyectos().getPosicion()>=0){
 				inicio.getProyectos().get(inicio.getVentanaProyectos().getPosicion()).setNombre(txtNombre.getText());

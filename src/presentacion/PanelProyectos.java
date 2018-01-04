@@ -134,6 +134,7 @@ public class PanelProyectos extends JPanel {
 					inicio.getVentanaTareas().getBtnBorrar().setEnabled(true);
 					inicio.getVentanaDatosProyecto().getBtnModificar().setEnabled(true);
 					inicio.getVentanaDatosProyecto().getBtnGuardar().setEnabled(true);
+					inicio.getVentanaDatosUsuario().setposicion1(filaSeleccionada);
 					btnBorrar.setEnabled(true);
 					/*
 					 * / //// Metido para tareas
@@ -166,6 +167,8 @@ public class PanelProyectos extends JPanel {
 
 	private class BtnAadirActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			inicio.getVentanaDatosUsuario().setVisible(false);
+			inicio.getVentanaDatosProyecto().setVisible(true);
 			inicio.getVentanaDatosProyecto().getTxtNombre().setText(""); //$NON-NLS-1$
 			inicio.getVentanaDatosProyecto().getTextDescripcion().setText(""); //$NON-NLS-1$
 			inicio.getVentanaDatosProyecto().getTxtResponsable().setText(""); //$NON-NLS-1$

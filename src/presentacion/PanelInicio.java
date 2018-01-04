@@ -238,7 +238,7 @@ public class PanelInicio extends JFrame {
 		desktopPane.add(panel_Derecha, gbc_panel_Derecha);
 		panel_Derecha.setLayout(new CardLayout(0, 0));
 		splitPane_Der.setOrientation(JSplitPane.VERTICAL_SPLIT);
-
+		VentanaDatosProyecto.setinicio(this);
 		VentanaInformacionMensaje.setinicio(this);
 		VentanaMensajes.setinicio(this);
 		panel_Derecha.add(splitPane_Der, "splitPane_Derecha"); //$NON-NLS-1$

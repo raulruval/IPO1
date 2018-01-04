@@ -108,7 +108,11 @@ public class PanelMiembros extends JPanel {
 	}
 	public void aniadefila(Proyecto pro){
 		ArrayList<Usuario> miembrosproyecto= pro.getMiembros();
-		for(int i=0; i<((pro.getMiembros()).size()/2);i++){
+		int num=pro.getMiembros().size()/2;
+		if(num<1){
+			num=1;
+		}
+		for(int i=0; i<num;i++){
 			String[] fila1 = {miembrosproyecto.get(i).getNombre()};
 			modeloTabla.aniadeFila(fila1);
 		}
