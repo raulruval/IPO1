@@ -252,9 +252,13 @@ public class PanelInicio extends JFrame {
 		panel_DechaAbajo.add(VentanaTareas, "VentanaTareas"); //$NON-NLS-1$
 		panel_Derecha.add(VentanaInformacionMensaje, "VentanaInformacionMensaje"); //$NON-NLS-1$
 		panel_Izquierda.add(VentanaMensajes, "VentanaMensajes"); //$NON-NLS-1$
-
+		VentanaDatosUsuario.setinicio(this);
 		panel_DerechaArriba.add(VentanaDatosUsuario, "VentanaDatosUsuario"); //$NON-NLS-1$
 
+	}
+
+	public static void setUsuarios(ArrayList<Usuario> usuarios) {
+		PanelInicio.usuarios = usuarios;
 	}
 
 	public PanelInformacionMensajes getVentanaInformacionMensaje() {

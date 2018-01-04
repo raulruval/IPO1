@@ -39,8 +39,9 @@ public class PanelProyectos extends JPanel {
 	private JButton btnBorrar;
 	private JButton btnAadir;
 	private JToolBar toolBar;
-
+	int posicion = -1;
 	PanelInicio inicio;
+
 	public MiModeloTabla getModeloTabla() {
 		return modeloTabla;
 	}
@@ -48,16 +49,16 @@ public class PanelProyectos extends JPanel {
 	public void setModeloTabla(MiModeloTabla modeloTabla) {
 		this.modeloTabla = modeloTabla;
 	}
+
 	private PanelDatosProyecto datpro;
 
-	
-	
 	private Proyecto pro;
 	MiModeloTabla modeloTabla = new MiModeloTabla();
 
 	public PanelProyectos(PanelInicio ini) {
-		inicio=ini;
-		setBorder(new TitledBorder(null, MessagesIPO1Inter.getString("PanelProyectos.0"), TitledBorder.LEADING, TitledBorder.TOP, null, null)); //$NON-NLS-1$
+		inicio = ini;
+		setBorder(new TitledBorder(null, MessagesIPO1Inter.getString("PanelProyectos.0"), TitledBorder.LEADING, //$NON-NLS-1$
+				TitledBorder.TOP, null, null));
 		setLayout(new BorderLayout(0, 0));
 
 		scrollPane = new JScrollPane();
@@ -106,7 +107,9 @@ public class PanelProyectos extends JPanel {
 				ListSelectionModel lsm = (ListSelectionModel) e.getSource();
 				if (!lsm.isSelectionEmpty()) {
 					int filaSeleccionada = lsm.getMinSelectionIndex();
+					posicion = filaSeleccionada;
 					pro = inicio.getProyectos().get(filaSeleccionada);
+					inicio.getVentanaDatosUsuario().setproyecto(pro);
 					Usuario us = pro.getResponsable();
 					String nombre = us.getNombre();
 					datpro = inicio.getVentanaDatosProyecto();
@@ -132,11 +135,14 @@ public class PanelProyectos extends JPanel {
 					inicio.getVentanaDatosProyecto().getBtnModificar().setEnabled(true);
 					inicio.getVentanaDatosProyecto().getBtnGuardar().setEnabled(true);
 					btnBorrar.setEnabled(true);
-				/*/	//// Metido para tareas
-					inicio.getVentanaTareas().gettabla().vaciartabla();
-					inicio.getVentanaTareas().gettabla().fireTableDataChanged();
-					inicio.getVentanaTareas().aniadefila(pro);
-					inicio.getVentanaTareas().gettabla().fireTableDataChanged(); /*/
+					/*
+					 * / //// Metido para tareas
+					 * inicio.getVentanaTareas().gettabla().vaciartabla();
+					 * inicio.getVentanaTareas().gettabla().fireTableDataChanged
+					 * (); inicio.getVentanaTareas().aniadefila(pro);
+					 * inicio.getVentanaTareas().gettabla().fireTableDataChanged
+					 * (); /
+					 */
 				}
 			}
 		});
@@ -154,6 +160,10 @@ public class PanelProyectos extends JPanel {
 		this.table = table;
 	}
 
+	public int getPosicion() {
+		return posicion;
+	}
+
 	private class BtnAadirActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			inicio.getVentanaDatosProyecto().getTxtNombre().setText(""); //$NON-NLS-1$
@@ -167,16 +177,19 @@ public class PanelProyectos extends JPanel {
 			inicio.getVentanaMiembros().gettabla().fireTableDataChanged();
 			inicio.getVentanaTareas().gettabla().vaciartabla();
 			inicio.getVentanaTareas().gettabla().fireTableDataChanged();
-			JOptionPane.showMessageDialog(null, MessagesIPO1Inter.getString("PanelProyectos.8"), MessagesIPO1Inter.getString("PanelProyectos.9"), JOptionPane.INFORMATION_MESSAGE); //$NON-NLS-1$ //$NON-NLS-2$
+			posicion = -1;
+			JOptionPane.showMessageDialog(null, MessagesIPO1Inter.getString("PanelProyectos.8"), //$NON-NLS-1$
+					MessagesIPO1Inter.getString("PanelProyectos.9"), JOptionPane.INFORMATION_MESSAGE); //$NON-NLS-1$
 		}
 	}
 
 	private class BtnBorrarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			// Ventana de dialogo
-			
+
 			int p = JOptionPane.showOptionDialog(null, MessagesIPO1Inter.getString("PanelProyectos.10"), //$NON-NLS-1$
-					MessagesIPO1Inter.getString("PanelProyectos.11"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, //$NON-NLS-1$
+					MessagesIPO1Inter.getString("PanelProyectos.11"), JOptionPane.YES_NO_OPTION, //$NON-NLS-1$
+					JOptionPane.QUESTION_MESSAGE, null, null,
 					null);
 			if (p == 0) {
 				MiModeloTabla modeloTabla = (MiModeloTabla) table.getModel();
@@ -184,6 +197,7 @@ public class PanelProyectos extends JPanel {
 				if (n != -1)
 					modeloTabla.eliminaFila(table.getSelectedRow());
 				modeloTabla.fireTableDataChanged();
+				posicion = -1;
 				inicio.getVentanaMiembros().gettabla().vaciartabla();
 				inicio.getVentanaMiembros().gettabla().fireTableDataChanged();
 				inicio.getVentanaTareas().gettabla().vaciartabla();
@@ -194,7 +208,7 @@ public class PanelProyectos extends JPanel {
 			}
 
 		}
-		
+
 	}
 
 	public ArrayList<Proyecto> getproyectos() {
@@ -203,7 +217,7 @@ public class PanelProyectos extends JPanel {
 
 	public void aniadeproyecto(Proyecto proy) {
 		inicio.getProyectos().add(proy);
-		String[] fila1 = {proy.getNombre()};
+		String[] fila1 = { proy.getNombre() };
 		modeloTabla.aniadeFila(fila1);
 		modeloTabla.fireTableDataChanged();
 	}
@@ -226,9 +240,8 @@ public class PanelProyectos extends JPanel {
 		return inicio.getMensajes();
 	}
 
-	
-	public ArrayList<Mensaje> getmensajes(){
+	public ArrayList<Mensaje> getmensajes() {
 		return inicio.getMensajes();
 	}
-	
+
 }

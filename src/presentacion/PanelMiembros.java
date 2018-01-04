@@ -33,6 +33,7 @@ public class PanelMiembros extends JPanel {
 	PanelInicio inicio;
 	ArrayList<Proyecto> proyectos;
 	ArrayList<Usuario> usuarios;
+
 	/**
 	 * Create the panel.
 	 */
@@ -80,6 +81,7 @@ public class PanelMiembros extends JPanel {
 					inicio.getVentanaDatosProyecto().setVisible(false);
 					inicio.getVentanaDatosUsuario().setVisible(true);
 					Usuario us =usuarios.get(filaSeleccionada);
+					inicio.getVentanaDatosUsuario().setusuario(filaSeleccionada);
 					inicio.getVentanaDatosUsuario().getTxtNombre().setText(us.getNombre());
 					inicio.getVentanaDatosUsuario().getTxtResponsable().setText(us.getConocimientos());
 					inicio.getVentanaDatosUsuario().getTextDescripcion().setText(us.getHabilidades());
@@ -91,6 +93,7 @@ public class PanelMiembros extends JPanel {
 		});
 
 	}
+	
 	public JButton getBtnAñadir() {
 		return btnAñadir;
 	}
@@ -109,6 +112,11 @@ public class PanelMiembros extends JPanel {
 			String[] fila1 = {miembrosproyecto.get(i).getNombre()};
 			modeloTabla.aniadeFila(fila1);
 		}
+	}
+	public void aniademiembro(Usuario us){
+		String[] fila1 = {us.getNombre()};
+		modeloTabla.aniadeFila(fila1);
+		modeloTabla.fireTableDataChanged();
 	}
 	public MiModeloTabla gettabla(){
 		return modeloTabla;
@@ -135,8 +143,13 @@ public class PanelMiembros extends JPanel {
 			inicio.getVentanaDatosProyecto().setVisible(false);
 			inicio.getVentanaDatosUsuario().setVisible(true);
 			JOptionPane.showMessageDialog(null, MessagesIPO1Inter.getString("PanelMiembros.7"), MessagesIPO1Inter.getString("PanelMiembros.8"), JOptionPane.INFORMATION_MESSAGE); //$NON-NLS-1$ //$NON-NLS-2$
-			
-			
+			inicio.getVentanaDatosUsuario().getTxtNombre().setText("");
+			inicio.getVentanaDatosUsuario().getTxtNombre().setEnabled(true);
+			inicio.getVentanaDatosUsuario().getTxtResponsable().setText("");
+			inicio.getVentanaDatosUsuario().getTxtResponsable().setEnabled(true);
+			inicio.getVentanaDatosUsuario().getTextDescripcion().setText("");
+			inicio.getVentanaDatosUsuario().getTextDescripcion().setEnabled(true);
+			inicio.getVentanaDatosUsuario().setusuario(0);
 		}
 	}
 	public void setinicio(PanelInicio in) {

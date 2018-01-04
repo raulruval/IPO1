@@ -2,10 +2,16 @@ package presentacion;
 
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
+
+import dominio.Proyecto;
+import dominio.Usuario;
+
 import javax.swing.UIManager;
 import java.awt.Color;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
@@ -16,6 +22,7 @@ import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class PanelDatosUsuario extends JPanel {
@@ -28,7 +35,9 @@ public class PanelDatosUsuario extends JPanel {
 	private JToolBar toolBar;
 	private JButton btnGuardar;
 	private JButton button;
-
+	PanelInicio inicio;
+	Proyecto pro;
+	int posicion=0;
 	/**
 	 * Create the panel.
 	 */
@@ -104,6 +113,7 @@ public class PanelDatosUsuario extends JPanel {
 		add(toolBar, gbc_toolBar);
 		
 		btnGuardar = new JButton(MessagesIPO1Inter.getString("PanelDatosUsuario.5")); //$NON-NLS-1$
+		btnGuardar.addActionListener(new BtnGuardarActionListener());
 		btnGuardar.setIcon(new ImageIcon(PanelDatosUsuario.class.getResource("/recursos/icons8-save-30.png"))); //$NON-NLS-1$
 		toolBar.add(btnGuardar);
 		
@@ -148,6 +158,31 @@ public class PanelDatosUsuario extends JPanel {
 			txtResponsable.setEnabled(true);
 			txtNombre.setEnabled(true);
 			textDescripcion.setEnabled(true);
+			
 		}
+	}
+	private class BtnGuardarActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			if(posicion==0){
+				Usuario us= new Usuario( txtNombre.getText(),textDescripcion.getText(), textDescripcion.getText(),txtResponsable.getText(),textDescripcion.getText() );
+				pro.getMiembros().add(inicio.getVentanaMiembros().gettabla().getRowCount(), us);
+				inicio.getVentanaMiembros().aniademiembro(us);
+				
+			} else if(posicion!=0){
+				inicio.getVentanaMiembros().usuarios.get(posicion).setNombre(txtNombre.getText());
+				inicio.getVentanaMiembros().usuarios.get(posicion).setInformacion(textDescripcion.getText());
+				inicio.getVentanaMiembros().usuarios.get(posicion).setConocimientos(txtResponsable.getText());
+			}
+			JOptionPane.showMessageDialog(null, MessagesIPO1Inter.getString("PanelDatosUsuario.8"), MessagesIPO1Inter.getString("PanelDatosUsuario.8"), JOptionPane.INFORMATION_MESSAGE); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+	}
+	public void setinicio(PanelInicio in){
+		inicio=in;
+	}
+	public void setproyecto(Proyecto proy){
+		pro=proy;
+	}
+	public void setusuario(int posicion){
+		this.posicion=posicion;
 	}
 }

@@ -175,30 +175,29 @@ public class PanelDatosProyecto extends JPanel {
 
 	private class BtnGuardarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			String Nombre = getTxtNombre().getText();
-			String descripcion = getTextDescripcion().getText();
-			String Responsable = getTxtResponsable().getText();
-			//ArrayList<Usuario> us = dominio.persistencia.getusuarios();
-			ArrayList<Tarea> tar = new ArrayList<Tarea>();
-			ArrayList<Usuario> miembros = new ArrayList<Usuario>();
-			Proyecto proyectoo;
-			Usuario usus;
-
-		/*	if (us.equals(Responsable)) {
-				int num = us.indexOf(Responsable);
-				usus = us.get(num);
-			} else {
-				usus = new Usuario(Responsable, "", null, null, "", "", "");
-			}*/
-			usus = new Usuario(Responsable, "", null, null, "", "", ""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-			miembros.add(usus);
-			proyectoo = new Proyecto(Responsable, descripcion, miembros, tar, usus);
-			ArrayList<Proyecto> poyectos=dominio.persistencia.inicializar();
-			poyectos.add(proyectoo);
-			inicio.setProyectos(poyectos);
-			String[] fila1 = { Nombre };
-			inicio.getVentanaProyectos().getModeloTabla().aniadeFila(fila1);
-			inicio.getVentanaProyectos().getmodelotabla().fireTableDataChanged();
+			if(inicio.getVentanaProyectos().getPosicion()==-1){
+				String Nombre = getTxtNombre().getText();
+				String descripcion = getTextDescripcion().getText();
+				String Responsable = getTxtResponsable().getText();
+				//ArrayList<Usuario> us = dominio.persistencia.getusuarios();
+				ArrayList<Tarea> tar = new ArrayList<Tarea>();
+				ArrayList<Usuario> miembros = new ArrayList<Usuario>();
+				Proyecto proyectoo;
+				Usuario usus;
+				usus = new Usuario(Responsable, "", null, null, "", "", ""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+				miembros.add(usus);
+				proyectoo = new Proyecto(Nombre, descripcion, miembros, tar, usus);
+				inicio.getProyectos().add(inicio.getVentanaProyectos().getmodelotabla().getRowCount(),proyectoo);
+				String[] fila1 = { Nombre };
+				inicio.getVentanaProyectos().getModeloTabla().aniadeFila(fila1);
+				inicio.getVentanaProyectos().getmodelotabla().fireTableDataChanged();
+			}
+			else if(inicio.getVentanaProyectos().getPosicion()>=0){
+				inicio.getProyectos().get(inicio.getVentanaProyectos().getPosicion()).setNombre(txtNombre.getText());
+				inicio.getProyectos().get(inicio.getVentanaProyectos().getPosicion()).setDescripcion(textDescripcion.getText());
+				inicio.getProyectos().get(inicio.getVentanaProyectos().getPosicion()).setResponsable(txtResponsable.getText());
+			}
+			
 			JOptionPane.showMessageDialog(null, MessagesIPO1Inter.getString("PanelDatosProyecto.13"), MessagesIPO1Inter.getString("PanelDatosProyecto.14"), JOptionPane.INFORMATION_MESSAGE); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}

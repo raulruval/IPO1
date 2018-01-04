@@ -47,4 +47,7 @@ public Usuario getResponsable() {
 public void setResponsable(Usuario responsable) {
 	this.responsable = responsable;
 }
+public void setResponsable(String nombre){
+	responsable.setNombre(nombre);
+}
 }
