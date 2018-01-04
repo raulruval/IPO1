@@ -193,7 +193,12 @@ public class PanelDatosProyecto extends JPanel {
 			usus = new Usuario(Responsable, "", null, null, "", "", ""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 			miembros.add(usus);
 			proyectoo = new Proyecto(Responsable, descripcion, miembros, tar, usus);
-			inicio.getVentanaProyectos().aniadeproyecto(proyectoo);
+			ArrayList<Proyecto> poyectos=dominio.persistencia.inicializar();
+			poyectos.add(proyectoo);
+			inicio.setProyectos(poyectos);
+			String[] fila1 = { Nombre };
+			inicio.getVentanaProyectos().getModeloTabla().aniadeFila(fila1);
+			inicio.getVentanaProyectos().getmodelotabla().fireTableDataChanged();
 			JOptionPane.showMessageDialog(null, MessagesIPO1Inter.getString("PanelDatosProyecto.13"), MessagesIPO1Inter.getString("PanelDatosProyecto.14"), JOptionPane.INFORMATION_MESSAGE); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}

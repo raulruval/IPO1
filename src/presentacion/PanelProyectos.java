@@ -186,6 +186,8 @@ public class PanelProyectos extends JPanel {
 				modeloTabla.fireTableDataChanged();
 				inicio.getVentanaMiembros().gettabla().vaciartabla();
 				inicio.getVentanaMiembros().gettabla().fireTableDataChanged();
+				inicio.getVentanaTareas().gettabla().vaciartabla();
+				inicio.getVentanaTareas().gettabla().fireTableDataChanged();
 				inicio.getVentanaDatosProyecto().getTxtNombre().setText(""); //$NON-NLS-1$
 				inicio.getVentanaDatosProyecto().getTextDescripcion().setText(""); //$NON-NLS-1$
 				inicio.getVentanaDatosProyecto().getTxtResponsable().setText(""); //$NON-NLS-1$

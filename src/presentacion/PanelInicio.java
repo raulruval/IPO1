@@ -75,6 +75,10 @@ public class PanelInicio extends JFrame {
 		VentanaProyectos = ventanaProyectos;
 	}
 
+	public static void setProyectos(ArrayList<Proyecto> proyectos) {
+		PanelInicio.proyectos = proyectos;
+	}
+
 	private final JButton btnInicio = new JButton(MessagesIPO1Inter.getString("PanelInicio.btnInicio.text")); //$NON-NLS-1$
 	private final JButton btnMensajes = new JButton(MessagesIPO1Inter.getString("PanelInicio.btnMensajes.text")); //$NON-NLS-1$
 	private final JPanel panel_Idioma = new JPanel();
