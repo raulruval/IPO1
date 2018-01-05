@@ -114,6 +114,9 @@ public class PanelDatosUsuario extends JPanel {
 		add(toolBar, gbc_toolBar);
 		
 		btnGuardar = new JButton(MessagesIPO1Inter.getString("PanelDatosUsuario.5")); //$NON-NLS-1$
+		btnGuardar.setPreferredSize(new Dimension(85, 25));
+		btnGuardar.setMinimumSize(new Dimension(100, 35));
+		btnGuardar.setMaximumSize(new Dimension(100, 35));
 		btnGuardar.addActionListener(new BtnGuardarActionListener());
 		btnGuardar.setIcon(new ImageIcon(PanelDatosUsuario.class.getResource("/recursos/icons8-save-30.png"))); //$NON-NLS-1$
 		toolBar.add(btnGuardar);

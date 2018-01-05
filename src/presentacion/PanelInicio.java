@@ -56,6 +56,8 @@ public class PanelInicio extends JFrame {
 	PanelMensajes VentanaMensajes = new PanelMensajes();
 	PanelInformacionMensajes VentanaInformacionMensaje = new PanelInformacionMensajes();
 	PanelDatosUsuario VentanaDatosUsuario = new PanelDatosUsuario();
+	PanelDatosTareas VentanaDatosTareas = new PanelDatosTareas();
+
 
 	public PanelDatosUsuario getVentanaDatosUsuario() {
 		return VentanaDatosUsuario;
@@ -249,11 +251,13 @@ public class PanelInicio extends JFrame {
 		panel_DechaAbajo.setMinimumSize(new Dimension(10, 300));
 		splitPane_Der.setRightComponent(panel_DechaAbajo);
 		panel_DechaAbajo.setLayout(new CardLayout(0, 0));
+		VentanaTareas.getBtnAñadir().addActionListener(new VentanaTareasBtnAñadirActionListener());
 		panel_DechaAbajo.add(VentanaTareas, "VentanaTareas"); //$NON-NLS-1$
 		panel_Derecha.add(VentanaInformacionMensaje, "VentanaInformacionMensaje"); //$NON-NLS-1$
 		panel_Izquierda.add(VentanaMensajes, "VentanaMensajes"); //$NON-NLS-1$
 		VentanaDatosUsuario.setinicio(this);
 		panel_DerechaArriba.add(VentanaDatosUsuario, "VentanaDatosUsuario"); //$NON-NLS-1$
+		panel_DerechaArriba.add(VentanaDatosTareas,"VentanaDatosTareas");
 
 	}
 
@@ -308,6 +312,8 @@ public class PanelInicio extends JFrame {
 	public void setVentanaTareas(PanelTareas ventanaTareas) {
 		VentanaTareas = ventanaTareas;
 	}
+	
+	
 
 	private class BtnMensajesMouseListener extends MouseAdapter {
 		@Override
@@ -374,6 +380,13 @@ public class PanelInicio extends JFrame {
 			PanelInicio frame = new PanelInicio();
 			frame.setVisible(true);
 
+		}
+	}
+	private class VentanaTareasBtnAñadirActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			VentanaDatosProyecto.setVisible(false);
+			VentanaDatosUsuario.setVisible(false);
+			VentanaDatosTareas.setVisible(true);
 		}
 	}
 
