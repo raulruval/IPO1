@@ -2,6 +2,9 @@ package presentacion;
 
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.awt.GridBagLayout;
@@ -32,8 +35,9 @@ public class PanelTareas extends JPanel {
 	private JToolBar toolBar;
 	private JButton btnBorrar;
 	private JTable table;
-	
-	
+	PanelInicio inicio;
+	Proyecto pro;
+	Tarea tarea;
 	MimodelotablaTareas modeloTablaTareas = new MimodelotablaTareas();
 	private JButton btnAñadir;
 	/**
@@ -74,6 +78,44 @@ public class PanelTareas extends JPanel {
 		btnBorrar.setIcon(new ImageIcon(PanelTareas.class.getResource("/recursos/icons8-trash-can-30.png"))); //$NON-NLS-1$
 		toolBar.add(btnBorrar);
 		btnBorrar.setEnabled(false);
+		
+		ListSelectionModel rowSM = table.getSelectionModel();
+		rowSM.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				ListSelectionModel lsm = (ListSelectionModel) e.getSource();
+				if (!lsm.isSelectionEmpty()) {
+					int filaSeleccionada = lsm.getMinSelectionIndex();
+					tarea=pro.getTareas().get(filaSeleccionada);
+					inicio.getVentanaDatosUsuario().setVisible(false);
+					inicio.getVentanaDatosProyecto().setVisible(false);
+					inicio.getVentanaDatosTareas().setVisible(true);
+					inicio.getVentanaDatosTareas().getTextNombre().setEnabled(false);
+					inicio.getVentanaDatosTareas().getTextEncargado().setEnabled(false);
+					inicio.getVentanaDatosTareas().getTextFecha().setEnabled(false);
+					inicio.getVentanaDatosTareas().getTextEtiquetas().setEnabled(false);
+					inicio.getVentanaDatosTareas().getTextComentarios().setEnabled(false);
+					inicio.getVentanaDatosTareas().getTextNombre().setText(tarea.getNombre());
+					inicio.getVentanaDatosTareas().getTextEncargado().setText(tarea.getEncargado().getNombre());
+					inicio.getVentanaDatosTareas().getTextFecha().setText(tarea.getFechafinal());
+					inicio.getVentanaDatosTareas().getTextEtiquetas().setText(tarea.getEtiquetas());
+					inicio.getVentanaDatosTareas().getTextComentarios().setText(tarea.getComentarios());
+					inicio.getVentanaDatosTareas().setPosicion(filaSeleccionada);
+					btnBorrar.setEnabled(true);
+				}
+			}
+		});
+	}
+	public Tarea getTarea() {
+		return tarea;
+	}
+	public void setTarea(Tarea tarea) {
+		this.tarea = tarea;
+	}
+	public Proyecto getPro() {
+		return pro;
+	}
+	public void setPro(Proyecto pro) {
+		this.pro = pro;
 	}
 	public JButton getBtnBorrar() {
 		return btnBorrar;
@@ -87,6 +129,9 @@ public class PanelTareas extends JPanel {
 	public void setBtnAñadir(JButton btnAñadir) {
 		this.btnAñadir = btnAñadir;
 	}
+	public void setinicio(PanelInicio in){
+		inicio=in;
+	}
 	public void aniadefila(Proyecto pro){
 		ArrayList<Tarea> tareasproyecto= pro.getTareas();
 		for(int i=0; i<(pro.getTareas().size())/2;i++){
@@ -94,6 +139,13 @@ public class PanelTareas extends JPanel {
 					tareasproyecto.get(i).getFechafinal(), tareasproyecto.get(i).getEtiquetas(), tareasproyecto.get(i).getComentarios()};
 			modeloTablaTareas.aniadeFila(fila1);
 		}
+	}
+	public void aniadetarea(Tarea tar){
+		String[] fila1 = {tar.getNombre(), tar.getEncargado().getNombre(),
+				tar.getFechafinal(), tar.getEtiquetas(), tar.getComentarios()};
+		modeloTablaTareas.aniadeFila(fila1);
+		modeloTablaTareas.fireTableDataChanged();
+		
 	}
 	public MimodelotablaTareas gettabla(){
 		return modeloTablaTareas;
@@ -111,13 +163,25 @@ public class PanelTareas extends JPanel {
 					modeloTabla.eliminaFila(table.getSelectedRow());
 			}
 			modeloTablaTareas.fireTableDataChanged();
+			btnBorrar.setEnabled(false);
+			inicio.getVentanaDatosTareas().setPosicion(0);
 		}
 	}
 	private class BtnAñadirActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			String[] fila1 = {" ", " "," ", " "," "}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
-			modeloTablaTareas.aniadeFila(fila1);
-			modeloTablaTareas.fireTableDataChanged();
+			btnBorrar.setEnabled(false);
+			inicio.getVentanaDatosTareas().setVisible(true);
+			inicio.getVentanaDatosTareas().getTextNombre().setEnabled(true);
+			inicio.getVentanaDatosTareas().getTextFecha().setEnabled(true);
+			inicio.getVentanaDatosTareas().getTextEtiquetas().setEnabled(true);
+			inicio.getVentanaDatosTareas().getTextEncargado().setEnabled(true);
+			inicio.getVentanaDatosTareas().getTextComentarios().setEnabled(true);
+			inicio.getVentanaDatosTareas().getTextNombre().setText("");
+			inicio.getVentanaDatosTareas().getTextFecha().setText("");
+			inicio.getVentanaDatosTareas().getTextEtiquetas().setText("");
+			inicio.getVentanaDatosTareas().getTextEncargado().setText("");
+			inicio.getVentanaDatosTareas().getTextComentarios().setText("");;
+			inicio.getVentanaDatosTareas().setPosicion(0);
 			JOptionPane.showMessageDialog(null, MessagesIPO1Inter.getString("PanelTareas.12") //$NON-NLS-1$
 					+ MessagesIPO1Inter.getString("PanelTareas.13"), MessagesIPO1Inter.getString("PanelTareas.14"), JOptionPane.INFORMATION_MESSAGE); //$NON-NLS-1$ //$NON-NLS-2$
 		}

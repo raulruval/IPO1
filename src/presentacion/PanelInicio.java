@@ -57,7 +57,11 @@ public class PanelInicio extends JFrame {
 	PanelInformacionMensajes VentanaInformacionMensaje = new PanelInformacionMensajes();
 	PanelDatosUsuario VentanaDatosUsuario = new PanelDatosUsuario();
 	PanelDatosTareas VentanaDatosTareas = new PanelDatosTareas();
+	
 
+	public PanelDatosTareas getVentanaDatosTareas() {
+		return VentanaDatosTareas;
+	}
 
 	public PanelDatosUsuario getVentanaDatosUsuario() {
 		return VentanaDatosUsuario;
@@ -253,11 +257,13 @@ public class PanelInicio extends JFrame {
 		panel_DechaAbajo.setLayout(new CardLayout(0, 0));
 		VentanaTareas.getBtnAñadir().addActionListener(new VentanaTareasBtnAñadirActionListener());
 		panel_DechaAbajo.add(VentanaTareas, "VentanaTareas"); //$NON-NLS-1$
+		VentanaTareas.setinicio(this);
 		panel_Derecha.add(VentanaInformacionMensaje, "VentanaInformacionMensaje"); //$NON-NLS-1$
 		panel_Izquierda.add(VentanaMensajes, "VentanaMensajes"); //$NON-NLS-1$
 		VentanaDatosUsuario.setinicio(this);
 		panel_DerechaArriba.add(VentanaDatosUsuario, "VentanaDatosUsuario"); //$NON-NLS-1$
 		panel_DerechaArriba.add(VentanaDatosTareas,"VentanaDatosTareas");
+		VentanaDatosTareas.setInicio(this);
 
 	}
 

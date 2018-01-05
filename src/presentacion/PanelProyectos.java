@@ -42,6 +42,7 @@ public class PanelProyectos extends JPanel {
 	int posicion = -1;
 	PanelInicio inicio;
 
+
 	public MiModeloTabla getModeloTabla() {
 		return modeloTabla;
 	}
@@ -110,6 +111,7 @@ public class PanelProyectos extends JPanel {
 					posicion = filaSeleccionada;
 					pro = inicio.getProyectos().get(filaSeleccionada);
 					inicio.getVentanaDatosUsuario().setproyecto(pro);
+					inicio.getVentanaTareas().setPro(pro);
 					Usuario us = pro.getResponsable();
 					String nombre = us.getNombre();
 					datpro = inicio.getVentanaDatosProyecto();
@@ -124,6 +126,7 @@ public class PanelProyectos extends JPanel {
 					inicio.getVentanaTareas().aniadefila(pro);
 					inicio.getVentanaTareas().gettabla().fireTableDataChanged();
 					inicio.getVentanaMiembros().gettabla().fireTableDataChanged();
+					inicio.getVentanaDatosTareas().setVisible(false);
 					inicio.getVentanaDatosProyecto().setVisible(true);
 					inicio.getVentanaDatosProyecto().getTxtNombre().setEnabled(false);
 					inicio.getVentanaDatosProyecto().getTxtResponsable().setEnabled(false);
@@ -134,8 +137,10 @@ public class PanelProyectos extends JPanel {
 					inicio.getVentanaTareas().getBtnBorrar().setEnabled(true);
 					inicio.getVentanaDatosProyecto().getBtnModificar().setEnabled(true);
 					inicio.getVentanaDatosProyecto().getBtnGuardar().setEnabled(true);
+					inicio.getVentanaTareas().getBtnBorrar().setEnabled(false);
 					inicio.getVentanaDatosUsuario().setposicion1(filaSeleccionada);
 					btnBorrar.setEnabled(true);
+					inicio.getVentanaMiembros().getBtnBorrar().setEnabled(false);
 					/*
 					 * / //// Metido para tareas
 					 * inicio.getVentanaTareas().gettabla().vaciartabla();

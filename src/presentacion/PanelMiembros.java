@@ -78,6 +78,7 @@ public class PanelMiembros extends JPanel {
 					int n= inicio.getVentanaProyectos().getTable().getSelectedRow();
 					proyectos=inicio.getVentanaProyectos().getproyectos();
 					usuarios=proyectos.get(n).getMiembros();
+					inicio.getVentanaDatosTareas().setVisible(false);
 					inicio.getVentanaDatosProyecto().setVisible(false);
 					inicio.getVentanaDatosUsuario().setVisible(true);
 					Usuario us =usuarios.get(filaSeleccionada);
@@ -88,6 +89,7 @@ public class PanelMiembros extends JPanel {
 					inicio.getVentanaDatosUsuario().getTxtNombre().setEnabled(false);
 					inicio.getVentanaDatosUsuario().getTxtResponsable().setEnabled(false);
 					inicio.getVentanaDatosUsuario().getTextDescripcion().setEnabled(false);
+					btnBorrar.setEnabled(true);
 				}
 			}
 		});
@@ -138,6 +140,7 @@ public class PanelMiembros extends JPanel {
 					modeloTabla.eliminaFila(table.getSelectedRow());
 				modeloTabla.fireTableDataChanged();
 			}
+			btnBorrar.setEnabled(false);
 		}
 	}
 	private class BtnAñadirActionListener implements ActionListener {
@@ -154,6 +157,7 @@ public class PanelMiembros extends JPanel {
 			inicio.getVentanaDatosUsuario().getTextDescripcion().setText("");
 			inicio.getVentanaDatosUsuario().getTextDescripcion().setEnabled(true);
 			inicio.getVentanaDatosUsuario().setusuario(0);
+			btnBorrar.setEnabled(false);
 		}
 	}
 	public void setinicio(PanelInicio in) {
